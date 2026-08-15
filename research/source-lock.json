@@ -57,5 +57,17 @@
     "researchCaseSkills": 7,
     "validationCommand": "pnpm run check",
     "policy": "verify-retained-tools-without-generalizing-historical-cases"
+  },
+  "r4Result": {
+    "trackedFiles": 144,
+    "trackedBytes": 992702,
+    "rootDocuments": [
+      "README.md",
+      "AGENTS.md"
+    ],
+    "researchMethod": ".agents/notes/implemented/process/2026-08-15-scene-reconstruction-driven-development-harness-research.md",
+    "issueTemplates": 1,
+    "workflows": 1,
+    "validationCommand": "pnpm install --frozen-lockfile && pnpm run check"
   }
 }

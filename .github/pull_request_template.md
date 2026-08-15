@@ -1,13 +1,11 @@
-<!-- 写 Fixes #NN 表示解决并自动关闭；写 Related to #NN 仅关联。 -->
-<!-- 进入评审的非 Draft 人类 PR 至少引用一个同仓库 Issue。 -->
-<!-- 解决型 PR 与 Issue 同步 Priority；解决多个 Issue 时取最高值。 -->
+## 变更
 
-关联 Issue：
+说明本次研究、文档、案例或工具变化。
 
-<details>
-<summary>变更与验证</summary>
+## 证据与验证
 
-- 变更：
-- 验证：
+- 来源或研究证据：
+- 执行的检查：
+- 未验证或延后内容：
 
-</details>
+关联 Issue（如有）：

@@ -4,9 +4,11 @@
 
 ## 当前规则与研究议程
 
-- [改造章程](../.agents/notes/proposed/process/2026-08-15-development-harness-research-repository-charter.md)定义 R0–R4 的完整路线。
+- [现场还原研究章程](../.agents/notes/implemented/process/2026-08-15-scene-reconstruction-driven-development-harness-research.md)定义研究单位、证据等级、重放方式和结论门槛。
 - [中文主语料决策](../.agents/notes/implemented/process/2026-08-15-chinese-primary-research-corpus.md)定义语言、历史和分类政策。
 - [活跃提案](../.agents/notes/proposed/)保存仍值得研究的方法问题；`implemented/` 只保存当前研究仓库的已实施决定。
+
+专题研究先选择一个证据完整的真实开发现场，固定任务、源码、规则、工具、操作和结果，再区分直接事实、证据支持的还原、研究推断与未知项。每个现场默认只产生一份必要记录；两个不同现场支持同一机制后，才形成稳定发现。首个现场计划研究“非平凡改动从开发完成到安全推送”。
 
 ## 可复用工具
 
@@ -25,8 +27,6 @@
 ## 来源与分类证据
 
 - [`source-lock.json`](source-lock.json)记录不可变来源、规模基线和各波次结果。
-- [`extraction-manifest.json`](extraction-manifest.json)记录 R1 顶层处置。
-- [`r2-corpus-plan.json`](r2-corpus-plan.json)记录 R2 审核过的保留名单；[`r2-corpus-manifest.json`](r2-corpus-manifest.json)分类当前每份 Note、文档、Skill 和脚本。
+- [`extraction-manifest.json`](extraction-manifest.json)记录 R1 顶层处置；[`r2-corpus-plan.json`](r2-corpus-plan.json)记录 R2 审核过的保留名单。
+- [`r2-corpus-manifest.json`](r2-corpus-manifest.json)从 R2 起持续分类当前每份 Note、文档、Skill 和脚本。
 - [`r1-source-link-rewrite.json`](r1-source-link-rewrite.json)与 [`r2-source-link-rewrite.json`](r2-source-link-rewrite.json)记录固定到官方源码提交的链接转换。
-
-R3 只核验现有工具的最低可用性，不为历史案例建设通用框架。R4 将重写根 `README.md` 与 `AGENTS.md` 并完成新 checkout 验收；在此之前，根文件中的产品正文只是待清理历史材料。

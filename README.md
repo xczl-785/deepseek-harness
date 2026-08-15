@@ -1,74 +1,53 @@
-# DeepSeek Harness
+# DSH 开发 Harness 研究仓库
 
-> **研究提取分支：** `research/dsh-development-harness` 不是可运行或可发布的 DeepSeek Harness checkout。下方产品说明和命令是等待 R4 重写的历史材料，并指向[已经记录的产品来源](research/source-lock.json)；本研究仓库使用 `pnpm run check` 验证。
+本仓库从 DeepSeek Harness（DSH）的真实开发历史中提取研究材料，用于理解 Agent 工作流、工程规则、决策记录、质量门禁、评审方式和证据组织如何共同支撑软件开发。它不是可运行、可构建或可发布的 DSH 产品仓库。
 
-DeepSeek Harness（`dsh`）是由 [DeepSeek AI](https://deepseek.com) 开发的开源 agent harness（智能体框架）。
+研究分支独立演进，不整体合回产品 `main` 或 `master`。适合产品采用的结论或工具需要经过单独评审后显式移植。
 
-它采用**一切皆插件**的架构，并由 [Cordis](https://github.com/cordiverse/cordis) 驱动，其设计参见论文 [_A Programming Paradigm for Spatiotemporal Composability_](https://github.com/cordiverse/paper)。
+## 从哪里开始
 
-## 开发者预览
+1. 阅读[研究导航](research/README.md)，了解当前材料、工具和案例。
+2. 阅读[现场还原研究章程](.agents/notes/implemented/process/2026-08-15-scene-reconstruction-driven-development-harness-research.md)，了解如何开展研究。
+3. 通过 [source lock](research/source-lock.json)确认研究材料对应的官方仓库和固定提交。
 
-DeepSeek Harness 目前处于 _开发者预览_ 阶段，正在快速迭代。**未来将出现破坏兼容性的变更。**
+## 仓库内容
 
-## 运行
+- `.agents/notes/`：当前研究提案和已经采用的研究治理决定。
+- `docs/cookbook/`：仍有研究价值的研发操作方法。
+- `docs/postmortem/`：开发门禁或运行机制失效的事故案例。
+- `docs/i18n/`：翻译提示词、术语和语体校准材料。
+- `research/cases/`：从 DSH 开发历史中保留的 Notes、Skills、脚本和翻译样本；它们是现场证据，不是当前规则。
+- `research/`：来源锁、提取清单、语料分类和研究导航。
+- `scripts/`：只验证当前研究语料和保留工具的定向检查。
 
-### 通过 `npm` 运行
+## 安装与验证
 
-安装 `Node.js`，然后运行：
-
-```sh
-npx @deepseek-ai/dsh web
-```
-
-该命令会启动 Web UI，默认地址为 `http://127.0.0.1:3080`。详见 [Web UI 指南](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/docs/user/guide/index.md)。
-
-### 从源码运行
-
-如需从仓库源码运行：
+需要 Node.js `^22.19.0` 或 `>=24.0.0`，以及 pnpm `11.7.0`。
 
 ```sh
-git clone https://github.com/deepseek-ai/deepseek-harness.git
-cd deepseek-harness
-pnpm install
-pnpm run build
-pnpm dsh web
+pnpm install --frozen-lockfile
+pnpm run check
 ```
 
-## 社区与支持
+如需本地 Git hook，可运行：
 
-- 欢迎通过 [GitHub Discussions](https://github.com/deepseek-ai/deepseek-harness/discussions) 提交反馈或 bug 报告。
-- 为你的插件仓库添加 [`dsh-plugin`](https://github.com/topics/dsh-plugin) 话题，便于被发现。
-- 欢迎加入 DeepSeek Harness 企微群：扫码添加企微小助手并填写入群问卷，完成后小助手会邀请你入群。
+```sh
+pnpm run hooks:install
+```
 
-<table>
-  <thead>
-    <tr>
-      <th align="center">企微小助手</th>
-      <th align="center">入群问卷</th>
-      <th align="center">微信公众号</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="center"><img src="assets/community-wecom-assistant.png" alt="DeepSeek Harness 企微小助手二维码" width="180" height="180"></td>
-      <td align="center"><a href="https://trtgsjkv6r.feishu.cn/share/base/form/shrcnIt5twSVdLGD52KJBckGCgg"><img src="assets/community-wecom-survey.png" alt="DeepSeek Harness 入群问卷二维码" width="180" height="180"></a></td>
-      <td align="center"><img src="assets/community-wechat-official-account.png" alt="DeepSeek Harness 团队微信公众号二维码" width="180" height="180"></td>
-    </tr>
-  </tbody>
-</table>
+仓库不提供 DSH CLI、产品构建、产品测试、网站或发布命令。需要查看原产品源码时，使用 [source lock](research/source-lock.json) 中的官方仓库和固定提交，在临时 checkout 中读取或重放，不把完整产品目录复制回来。
 
-## 参与贡献
+## 研究原则
 
-参见 [https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/CONTRIBUTING.md](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/CONTRIBUTING.md)。
+研究从真实开发现场出发：先固定任务、源码、规则、工具、操作和结果，再区分直接事实、证据支持的还原与研究推断。一个现场只产生暂定结论；需要跨现场验证后，才能提升为稳定方法。研究默认只写必要记录，只有重复使用价值已经得到证明时才提取 Skill 或脚本。
 
-## 开发
+## 非目标
 
-请先阅读[开发指南](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/docs/development.md)与[架构文档](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/docs/architecture.md)。
+- 继续开发或分发 DSH 产品。
+- 保存完整产品源码作为备份。
+- 为研究材料建设展示站点、依赖图、知识图谱或任务平台。
+- 把所有历史 Skills 和脚本通用化。
 
-面向 agent：请遵循 [AGENTS.md](AGENTS.md)。
+## 来源与许可
 
-## 许可证
-
-[MIT](LICENSE)
-
-第三方依赖及其许可证见 [THIRD_PARTY_NOTICES.md](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/THIRD_PARTY_NOTICES.md)。
+提取来源、固定提交和 R0–R4 结果见 [research/source-lock.json](research/source-lock.json)。仓库使用 [MIT License](LICENSE)；历史案例仍保留其 DSH 来源语境和固定来源链接。
