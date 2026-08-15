@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-15",
+  "researchBranch": "research/dsh-development-harness",
+  "forkRepository": "git@github.com:xczl-785/deepseek-harness.git",
+  "officialRepository": "https://github.com/deepseek-ai/deepseek-harness.git",
+  "extractionCommit": "1682b423980637a0103dfb07a22536a98af4bcee",
+  "productSourceCommit": "47f943859bef60e4160492346772ded9b24f765a",
+  "productSourceRef": "master",
+  "baseline": {
+    "trackedFiles": 7412,
+    "trackedBytes": 47679648
+  },
+  "r1BulkCandidate": {
+    "paths": [
+      "apps",
+      "assets",
+      "examples",
+      "native",
+      "packages",
+      "patches",
+      "python",
+      "vendor",
+      "website"
+    ],
+    "trackedFiles": 4786,
+    "trackedBytes": 31072823
+  }
+}
