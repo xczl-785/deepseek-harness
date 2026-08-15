@@ -14,18 +14,16 @@ import { isArchivedAgentNotePath, uniqueRepoFiles } from './repo-files.ts'
 
 const root = resolve(import.meta.dirname, '..')
 
-/** Files to check: doc-typecheck's scope, system-prompt expected outputs, and the AGENTS.md pair. */
+/** Current research instructions, methods, navigation, and GitHub Markdown. */
 const PATTERNS = [
   'README.md',
-  'README.zh.md',
   '.agents/notes/**/*.md',
+  '.github/**/*.md',
   'docs/**/*.md',
-  'packages/*/*.md',
-  'packages/*/*/*.md',
-  'examples/**/system-prompt.expected.md',
-  'packages/**/system-prompt.expected.md',
+  'research/README.md',
   'AGENTS.md',
-  'packages/AGENTS.md',
+  '.agents/skills/**/*.md',
+  'scripts/**/*.md',
 ]
 
 /** A located hard-wrap: a prose paragraph spanning more than one source line. */

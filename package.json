@@ -18,7 +18,6 @@
     "verify-agent-note-format": "tsx scripts/verify-agent-note-format.ts",
     "verify-corpus-classification": "tsx scripts/verify-corpus-classification.ts",
     "verify-md-links": "tsx scripts/verify-md-links.ts",
-    "rewrite-removed-source-links": "tsx scripts/rewrite-removed-source-links.ts",
     "verify-md-wrap": "tsx scripts/verify-md-wrap.ts",
     "verify-mermaid": "tsx scripts/verify-mermaid.ts",
     "verify-public-repository-links": "tsx scripts/verify-public-repository-links.ts",

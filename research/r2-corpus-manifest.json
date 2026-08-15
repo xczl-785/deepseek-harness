@@ -48,14 +48,10 @@
   },
   "skills": {
     "method": [],
-    "reusable-tool": [
-      ".agents/skills/dsh-merging-stacked-prs"
-    ]
+    "reusable-tool": []
   },
   "scripts": {
-    "method": [
-      "scripts/apply-r2-corpus-plan.ts"
-    ],
+    "method": [],
     "case": [
       "research/cases/scripts/worktree-lefthook-installer/install-lefthook.mjs",
       "research/cases/scripts/worktree-lefthook-installer/install-lefthook.spec.ts",
@@ -67,7 +63,6 @@
       "scripts/change-scope.ts",
       "scripts/markdown.ts",
       "scripts/repo-files.ts",
-      "scripts/rewrite-removed-source-links.ts",
       "scripts/run-oxlint.spec.ts",
       "scripts/run-oxlint.ts",
       "scripts/test-fixture-cleanup.ts",

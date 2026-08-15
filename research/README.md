@@ -10,16 +10,16 @@
 
 ## 可复用工具
 
-- [stacked PR Skill](../.agents/skills/dsh-merging-stacked-prs/SKILL.md)是当前唯一可以直接调用的仓库 Skill。
 - [`scripts/`](../scripts/)保存分类、链接、Markdown、提示词、变更范围和静态检查工具；运行 `pnpm run check` 验证当前集合。
 - [翻译提示词](../docs/i18n/translation-prompt.md)、[术语表](../docs/i18n/terminology.md)和[语体样例](../docs/i18n/style-samples.md)是仍可执行的翻译研究工具。
+- 当前没有活跃仓库 Skill。原 DSH Skills 作为研究现场证据保存在 [`cases/skills/`](cases/skills/)，不会被自动调用。
 
 ## 方法与案例
 
 - [文档方法](../docs/cookbook/)保存评审和 stacked PR 操作方法。
 - [事故案例](../docs/postmortem/)保存能够解释开发门禁失效原因的完整因果记录。
 - [`cases/notes/`](cases/notes/)保存从官方产品开发中筛选出的高价值决策样本，但不作为当前权威。
-- [`cases/skills/`](cases/skills/)和 [`cases/scripts/`](cases/scripts/)保存等待 R3 通用化的产品绑定工具。
+- [`cases/skills/`](cases/skills/)和 [`cases/scripts/`](cases/scripts/)保存产品绑定工具的历史现场；只有具体研究证明具有复用价值时，才另行提取。
 - [`cases/translation/gold/`](cases/translation/gold/)保存翻译提示词测试使用的英中 gold pair；这些英文文件属于模型行为输入，不代表双语维护政策。
 
 ## 来源与分类证据
@@ -29,4 +29,4 @@
 - [`r2-corpus-plan.json`](r2-corpus-plan.json)记录 R2 审核过的保留名单；[`r2-corpus-manifest.json`](r2-corpus-manifest.json)分类当前每份 Note、文档、Skill 和脚本。
 - [`r1-source-link-rewrite.json`](r1-source-link-rewrite.json)与 [`r2-source-link-rewrite.json`](r2-source-link-rewrite.json)记录固定到官方源码提交的链接转换。
 
-R3 将从案例中抽取通用工具，R4 将重写根 `README.md` 与 `AGENTS.md` 并完成新 checkout 验收。在此之前，根文件中的产品正文只是待清理历史材料。
+R3 只核验现有工具的最低可用性，不为历史案例建设通用框架。R4 将重写根 `README.md` 与 `AGENTS.md` 并完成新 checkout 验收；在此之前，根文件中的产品正文只是待清理历史材料。

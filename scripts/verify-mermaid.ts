@@ -1,7 +1,7 @@
 /**
  * Parse every repo-authored Mermaid fence with Mermaid itself, catching syntax that link and fence
- * checks cannot. Scope intentionally matches the Markdown link gate, including standing docs,
- * package/example docs, and agent skills. Run with `tsx scripts/verify-mermaid.ts`.
+ * checks cannot. Scope intentionally matches the Markdown link gate for current research
+ * instructions, methods, navigation, and repository skills. Run with `tsx scripts/verify-mermaid.ts`.
  */
 
 import { globSync, readFileSync, realpathSync } from 'node:fs'
@@ -17,15 +17,13 @@ const root = resolve(import.meta.dirname, '..')
 
 const PATTERNS = [
   'README.md',
-  'README.zh.md',
   '.agents/notes/**/*.md',
+  '.github/**/*.md',
   'docs/**/*.md',
-  'packages/*/*.md',
-  'packages/*/*/*.md',
-  'examples/**/*.md',
+  'research/README.md',
   'AGENTS.md',
-  'packages/AGENTS.md',
   '.agents/skills/**/*.md',
+  'scripts/**/*.md',
 ]
 
 interface Block {

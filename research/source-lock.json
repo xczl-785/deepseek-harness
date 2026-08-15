@@ -49,5 +49,13 @@
     "rewrittenSourceLinks": 141,
     "corpusManifest": "r2-corpus-manifest.json",
     "sourceLinkRewriteReport": "r2-source-link-rewrite.json"
+  },
+  "r3Result": {
+    "trackedFiles": 154,
+    "trackedBytes": 1052394,
+    "activeSkills": 0,
+    "researchCaseSkills": 7,
+    "validationCommand": "pnpm run check",
+    "policy": "verify-retained-tools-without-generalizing-historical-cases"
   }
 }
