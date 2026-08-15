@@ -25,14 +25,11 @@ try {
   const document = read('docs/i18n/translation-prompt.md')
   const terminology = read('docs/i18n/terminology.md')
   const examplePaths = [
-    ['README.md', 'README.zh.md'],
-    ['docs/development.md', 'docs/development.zh.md'],
-    ['docs/i18n/README.md', 'docs/i18n/README.zh.md'],
-    ['docs/i18n/translation-rules.md', 'docs/i18n/translation-rules.zh.md'],
-    [
-      '.agents/notes/implemented/process/2026-07-02-bilingual-docs-and-pairing-gate.md',
-      '.agents/notes/implemented/process/2026-07-02-bilingual-docs-and-pairing-gate.zh.md',
-    ],
+    ['research/cases/translation/gold/root-readme.en.md', 'research/cases/translation/gold/root-readme.zh.md'],
+    ['research/cases/translation/gold/development.en.md', 'research/cases/translation/gold/development.zh.md'],
+    ['research/cases/translation/gold/i18n-readme.en.md', 'research/cases/translation/gold/i18n-readme.zh.md'],
+    ['research/cases/translation/gold/translation-rules.en.md', 'research/cases/translation/gold/translation-rules.zh.md'],
+    ['research/cases/translation/gold/bilingual-pairing-note.en.md', 'research/cases/translation/gold/bilingual-pairing-note.zh.md'],
   ] as const
   const examples: TranslationExample[] = examplePaths.map(([english, chinese]) => ({
     english: read(english),

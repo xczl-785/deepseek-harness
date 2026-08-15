@@ -10,8 +10,7 @@
   },
   "ignorePatterns": [
     "**/lib/**",
-    "**/node_modules/**",
-    ".agents/notes/archived/**"
+    "**/node_modules/**"
   ],
   "overrides": [
     {

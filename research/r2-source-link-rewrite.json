@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "47f943859bef60e4160492346772ded9b24f765a",
+  "passes": [
+    { "changedMarkdownFiles": 38, "rewrittenLinks": 108 },
+    { "changedMarkdownFiles": 13, "rewrittenLinks": 22 },
+    { "changedMarkdownFiles": 4, "rewrittenLinks": 6 },
+    { "changedMarkdownFiles": 4, "rewrittenLinks": 5 }
+  ],
+  "rewrittenLinks": 141,
+  "unresolvedLinks": 0,
+  "verification": "pnpm run verify-md-links"
+}

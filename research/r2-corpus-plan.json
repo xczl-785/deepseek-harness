@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "languagePolicy": "chinese-primary",
+  "archivePolicy": "git-history-and-source-links",
+  "retainedNotes": {
+    "method": [
+      ".agents/notes/implemented/process/2026-06-11-quality-gates",
+      ".agents/notes/implemented/process/2026-06-18-markdown-cross-link-lint",
+      ".agents/notes/implemented/process/2026-06-20-agent-note-classification",
+      ".agents/notes/implemented/process/2026-07-04-doc-tiers-and-budgets",
+      ".agents/notes/implemented/process/2026-07-05-uniform-agent-note-format",
+      ".agents/notes/implemented/process/2026-07-06-parallel-pre-push-gates",
+      ".agents/notes/implemented/process/2026-07-14-typescript-program-backed-semantic-gates",
+      ".agents/notes/implemented/process/2026-07-19-remove-generated-agent-note-index",
+      ".agents/notes/implemented/process/2026-07-19-require-agent-notes-for-non-trivial-changes",
+      ".agents/notes/implemented/process/2026-07-22-fast-local-git-hooks",
+      ".agents/notes/implemented/process/2026-07-26-dependencies-over-hand-rolling",
+      ".agents/notes/implemented/process/2026-07-27-explicit-change-scope-report",
+      ".agents/notes/implemented/process/2026-07-27-worktree-local-lefthook",
+      ".agents/notes/implemented/process/2026-08-02-native-github-stacks-and-optional-rebases",
+      ".agents/notes/implemented/process/2026-08-09-committed-artifact-citations",
+      ".agents/notes/implemented/process/2026-08-09-concrete-prose-names-actors-and-recorded-facts",
+      ".agents/notes/implemented/process/2026-08-09-md-fragment-anchor-gate",
+      ".agents/notes/implemented/process/2026-08-09-oxlint-only-fix-workflow",
+      ".agents/notes/implemented/process/2026-08-10-event-directed-pr-review-status",
+      ".agents/notes/implemented/testing/2026-06-11-property-based-testing",
+      ".agents/notes/implemented/testing/2026-07-22-cross-platform-test-fixtures",
+      ".agents/notes/implemented/testing/2026-07-25-scriptable-llm-wire-fault-server",
+      ".agents/notes/proposed/process/2026-06-11-api-extractor-reports",
+      ".agents/notes/proposed/process/2026-06-11-architectural-conformance",
+      ".agents/notes/proposed/process/2026-06-11-supply-chain-and-vendor-drift",
+      ".agents/notes/proposed/process/2026-06-20-discover-package-inventory",
+      ".agents/notes/proposed/process/2026-07-13-human-review-skill-maintenance",
+      ".agents/notes/proposed/testing/2026-06-11-deterministic-and-stress-testing",
+      ".agents/notes/proposed/testing/2026-06-11-mutation-testing"
+    ],
+    "reusable-tool": [
+      ".agents/notes/implemented/process/2026-07-23-translation-prompt-v4-contract",
+      ".agents/notes/implemented/process/2026-07-26-briefed-minimal-translation-updates",
+      ".agents/notes/implemented/process/2026-07-29-oxlint-linter",
+      ".agents/notes/implemented/process/2026-08-08-automatic-translation-pairing-merges",
+      ".agents/notes/implemented/process/2026-08-08-browser-gif-evidence-chain",
+      ".agents/notes/implemented/process/2026-08-08-lightweight-routine-documentation-translation",
+      ".agents/notes/implemented/process/2026-08-09-chinese-contract-terminology"
+    ],
+    "case": [
+      ".agents/notes/implemented/bug-fix/2026-07-27-stable-snapshot-refresh-volatiles",
+      ".agents/notes/implemented/bug-fix/2026-07-29-pnpm-setup-runner-isolation",
+      ".agents/notes/implemented/bug-fix/2026-08-12-unlink-fixture-junctions-before-delete",
+      ".agents/notes/implemented/testing/2026-07-30-vitest-jsdom-webstorage-ownership",
+      ".agents/notes/implemented/testing/2026-07-30-web-browser-snapshot-ci-gate",
+      ".agents/notes/implemented/simplification/2026-08-12-separate-source-launch-from-build",
+      ".agents/notes/rejected/simplification/2026-07-26-builtin-timer-promises-for-hand-rolled-sleeps",
+      ".agents/notes/rejected/simplification/2026-07-26-dependency-swaps-rejected-by-nih-audit"
+    ],
+    "governance": [
+      ".agents/notes/proposed/process/2026-08-15-development-harness-research-repository-charter"
+    ]
+  },
+  "bilingualToolFixtures": [
+    "README",
+    "docs/development",
+    "docs/i18n/README",
+    "docs/i18n/translation-rules",
+    ".agents/notes/implemented/process/2026-07-02-bilingual-docs-and-pairing-gate"
+  ],
+  "retainedChineseDocs": {
+    "case": [
+      "docs/postmortem/README",
+      "docs/postmortem/0001-acp-default-export-drops-inject",
+      "docs/postmortem/0002-js-expression-disabled-filesystem-tools",
+      "docs/postmortem/0003-web-agent-gui-feedback-loop",
+      "docs/postmortem/0004-landlock-partial-notice-misclassified-child-failures"
+    ],
+    "method": [
+      "docs/cookbook/maintaining-dsh-code-review",
+      "docs/cookbook/responding-to-pr-review-on-a-stack"
+    ]
+  },
+  "retainedInstructionDocs": [
+    "AGENTS.md",
+    ".github/AGENTS.md",
+    ".agents/notes/implemented/AGENTS.md",
+    "docs/AGENTS.md",
+    "scripts/AGENTS.md"
+  ],
+  "retainedSkills": [
+    "dsh-doc-standards",
+    "dsh-find-simplifications",
+    "dsh-merging-stacked-prs",
+    "dsh-pre-push-checks",
+    "dsh-prose-standard",
+    "dsh-trim-cot-leakage",
+    "record-browser-gif"
+  ]
+}

@@ -1,6 +1,0 @@
-# Bilingual-pair consistency record (docs/i18n/README.md): the git blob hash of each
-# side as of the last confirmed-consistent state. Both languages carry equal authority;
-# after editing either side, bring the other along and re-record with:
-#   pnpm run verify-translation-pairing --write .agents/notes/implemented/bug-fix/2026-08-06-api-key-format-validation.md
-2026-08-06-api-key-format-validation.md: e23676ecefc0c4c88b26879bd7e204e227e8f420
-2026-08-06-api-key-format-validation.zh.md: 319594b03ac59355f8ac1ab22ec8252f2ceee0c1

@@ -18,9 +18,6 @@ const AGENT_NOTE_LIFECYCLES = ['proposed', 'implemented', 'rejected'] as const
  */
 export const AGENT_NOTE_CLASSES = ['feature', 'bug-fix', 'simplification', 'architecture', 'process', 'testing'] as const
 
-/** Historical implemented notes live outside the active lifecycle tree. */
-const AGENT_NOTE_ARCHIVE = 'archived'
-
 /** Non-Agent Note Markdown allowed to sit directly at a lifecycle root. */
 const ROOT_ALLOWLIST = new Set(['AGENTS.md', 'CLAUDE.md'])
 
@@ -49,9 +46,8 @@ export function walkAgentNoteTree(): { notes: AgentNote[]; errors: string[] } {
       continue
     }
     if (entry.isDirectory()
-      && entry.name !== AGENT_NOTE_ARCHIVE
       && !(AGENT_NOTE_LIFECYCLES as readonly string[]).includes(entry.name)) {
-      errors.push(`structure: ${entry.name}/ — unknown lifecycle folder (allowed: ${AGENT_NOTE_LIFECYCLES.join(', ')}, plus ${AGENT_NOTE_ARCHIVE}/)`)
+      errors.push(`structure: ${entry.name}/ — unknown lifecycle folder (allowed: ${AGENT_NOTE_LIFECYCLES.join(', ')})`)
     }
   }
   for (const lifecycle of AGENT_NOTE_LIFECYCLES) {
@@ -59,9 +55,6 @@ export function walkAgentNoteTree(): { notes: AgentNote[]; errors: string[] } {
       const segs = match.split('/')
       // Allowlisted file directly at the lifecycle root (e.g. implemented/AGENTS.md).
       if (segs.length === 2 && ROOT_ALLOWLIST.has(segs[1] ?? '')) continue
-      // A Chinese counterpart (foo.zh.md, docs/i18n/README.md) is the SAME Agent Note,
-      // indexed via its English filename; the pairing gate owns its consistency.
-      if (match.endsWith('.zh.md')) continue
       const cls = segs[1]
       const base = segs[2]
       if (segs.length !== 3 || cls === undefined || base === undefined) {

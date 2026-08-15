@@ -33,5 +33,21 @@
     "byteReductionPercent": 68.38,
     "rewrittenSourceLinks": 3648,
     "sourceLinkRewriteReport": "r1-source-link-rewrite.json"
+  },
+  "r2Result": {
+    "trackedFiles": 156,
+    "trackedBytes": 1060395,
+    "fileReductionPercentFromBaseline": 97.9,
+    "byteReductionPercentFromBaseline": 97.78,
+    "activeAgentNotes": 9,
+    "classifiedDocuments": 83,
+    "activeSkills": 1,
+    "classifiedScripts": 29,
+    "researchCaseNotes": 37,
+    "removedActiveNotes": 497,
+    "removedArchivedTriplets": 142,
+    "rewrittenSourceLinks": 141,
+    "corpusManifest": "r2-corpus-manifest.json",
+    "sourceLinkRewriteReport": "r2-source-link-rewrite.json"
   }
 }

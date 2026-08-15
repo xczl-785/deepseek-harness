@@ -1,8 +1,7 @@
 /**
  * Enforce Agent Note headers, lifecycle-specific sections, alternatives, and retired
- * marker rules. Classification and filenames belong to the sibling tree gate;
- * translation structure belongs to the pairing gate. Exact format and
- * grandfathering rules live in `.agents/notes/README.md`.
+ * marker rules. Classification and filenames belong to the sibling tree gate.
+ * Exact format and grandfathering rules live in `.agents/notes/README.md`.
  */
 
 import { readFileSync } from 'node:fs'
@@ -35,6 +34,24 @@ const REQUIRED: Record<string, string[]> = {
 /** Headings banned in `implemented/` — proposal-era spec-speak per the slop checklist. */
 const BANNED_IMPLEMENTED = /^## (?:Proposal\b|Plan\b|Migration plan\b|Acceptance criteria\b)/i
 
+/** Normalize legacy translated headings into the structural tokens enforced below. */
+const HEADING_ALIASES: Record<string, string> = {
+  '## 问题': '## Problem',
+  '## 提案': '## Proposal',
+  '## 验收标准': '## Acceptance criteria',
+  '## 风险': '## Risks',
+  '## 决策': '## Decision',
+  '## 后果': '## Consequences',
+  '## 影响': '## Consequences',
+  '## 结果': '## Consequences',
+  '## 曾考虑的替代方案': '## Alternatives considered',
+  '## 考虑过的替代方案': '## Alternatives considered',
+  '## 考虑过的备选方案': '## Alternatives considered',
+  '## 备选方案': '## Alternatives considered',
+  '## 计划': '## Plan',
+  '## 迁移计划': '## Migration plan',
+}
+
 const { notes, errors } = walkAgentNoteTree()
 
 for (const note of notes) {
@@ -64,7 +81,8 @@ for (const note of notes) {
     fail('the line-3 `Status:` line must be the only one in the file')
   }
 
-  const h2s = prose.filter(l => l.startsWith('## ')).map(l => l.trimEnd())
+  const authoredH2s = prose.filter(l => l.startsWith('## ')).map(l => l.trimEnd())
+  const h2s = authoredH2s.map(heading => HEADING_ALIASES[heading] ?? heading)
   if (h2s[0] !== '## Problem') fail(`the first section must be \`## Problem\` (got ${JSON.stringify(h2s[0] ?? '<none>')})`)
   for (const required of REQUIRED[note.lifecycle] ?? []) {
     if (!h2s.includes(required)) fail(`missing the required \`${required}\` section`)

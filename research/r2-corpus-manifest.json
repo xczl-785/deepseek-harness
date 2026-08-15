@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "policies": {
+    "language": "chinese-primary",
+    "archive": "git-history-and-source-links",
+    "sourceLock": "research/source-lock.json"
+  },
+  "extractionPlan": "research/r2-corpus-plan.json",
+  "notes": {
+    "method": [
+      ".agents/notes/implemented/process/2026-08-15-chinese-primary-research-corpus.md",
+      ".agents/notes/proposed/process/2026-06-11-api-extractor-reports.md",
+      ".agents/notes/proposed/process/2026-06-11-architectural-conformance.md",
+      ".agents/notes/proposed/process/2026-06-11-supply-chain-and-vendor-drift.md",
+      ".agents/notes/proposed/process/2026-06-20-discover-package-inventory.md",
+      ".agents/notes/proposed/process/2026-07-13-human-review-skill-maintenance.md",
+      ".agents/notes/proposed/process/2026-08-15-development-harness-research-repository-charter.md",
+      ".agents/notes/proposed/testing/2026-06-11-deterministic-and-stress-testing.md",
+      ".agents/notes/proposed/testing/2026-06-11-mutation-testing.md"
+    ]
+  },
+  "documents": {
+    "method": [
+      ".agents/notes/AGENTS.md",
+      ".agents/notes/README.md",
+      ".agents/notes/implemented/AGENTS.md",
+      ".github/AGENTS.md",
+      ".github/ISSUE_TEMPLATE/*.md",
+      ".github/pull_request_template.md",
+      "AGENTS.md",
+      "CLAUDE.md",
+      "docs/AGENTS.md",
+      "docs/cookbook/*.md",
+      "research/README.md",
+      "scripts/AGENTS.md"
+    ],
+    "reusable-tool": [
+      "docs/i18n/*.md",
+      "scripts/fixtures/translation-prompt/*.md"
+    ],
+    "case": [
+      "docs/postmortem/*.md"
+    ],
+    "historical-evidence": [
+      "README.md",
+      "research/cases/**/*.md"
+    ]
+  },
+  "skills": {
+    "method": [],
+    "reusable-tool": [
+      ".agents/skills/dsh-merging-stacked-prs"
+    ]
+  },
+  "scripts": {
+    "method": [
+      "scripts/apply-r2-corpus-plan.ts"
+    ],
+    "case": [
+      "research/cases/scripts/worktree-lefthook-installer/install-lefthook.mjs",
+      "research/cases/scripts/worktree-lefthook-installer/install-lefthook.spec.ts",
+      "research/cases/skills/record-browser-gif/scripts/encode_gif.py"
+    ],
+    "reusable-tool": [
+      "scripts/agent-note-tree.ts",
+      "scripts/change-scope.spec.ts",
+      "scripts/change-scope.ts",
+      "scripts/markdown.ts",
+      "scripts/repo-files.ts",
+      "scripts/rewrite-removed-source-links.ts",
+      "scripts/run-oxlint.spec.ts",
+      "scripts/run-oxlint.ts",
+      "scripts/test-fixture-cleanup.ts",
+      "scripts/translation-prompt.snapshot.ts",
+      "scripts/translation-prompt.spec.ts",
+      "scripts/translation-prompt.ts",
+      "scripts/verify-agent-note-classification.ts",
+      "scripts/verify-agent-note-format.ts",
+      "scripts/verify-corpus-classification.ts",
+      "scripts/verify-doc-budgets.ts",
+      "scripts/verify-md-links.spec.ts",
+      "scripts/verify-md-links.ts",
+      "scripts/verify-md-wrap.ts",
+      "scripts/verify-mermaid.ts",
+      "scripts/verify-public-repository-links.spec.ts",
+      "scripts/verify-public-repository-links.ts",
+      "scripts/verify-skill-invocation-metadata.spec.ts",
+      "scripts/verify-skill-invocation-metadata.ts",
+      "scripts/verify-translation-prompt.ts"
+    ]
+  },
+  "executionLanguage": [
+    "docs/i18n/translation-prompt.md",
+    "docs/i18n/terminology.md",
+    "docs/i18n/style-samples.md",
+    "research/cases/translation/gold/*.en.md",
+    "research/cases/translation/gold/*.zh.md",
+    "scripts/fixtures/translation-prompt/*"
+  ],
+  "removed": {
+    "activeNotes": 497,
+    "archivedTriplets": 142,
+    "productDocumentStems": 96,
+    "obsoleteSkills": 4,
+    "researchCaseNotes": 37
+  }
+}

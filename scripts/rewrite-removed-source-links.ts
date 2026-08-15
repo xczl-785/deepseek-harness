@@ -10,11 +10,13 @@ import { isArchivedAgentNotePath, uniqueRepoFiles } from './repo-files.ts'
 const root = resolve(import.meta.dirname, '..')
 const sourceCommit = '47f943859bef60e4160492346772ded9b24f765a'
 const upstream = 'https://github.com/deepseek-ai/deepseek-harness'
+const reportPath = process.argv[2] ?? 'research/r1-source-link-rewrite.json'
 const patterns = [
   'README.md',
   'README.zh.md',
   '.agents/notes/**/*.md',
   'docs/**/*.md',
+  'research/README.md',
   'AGENTS.md',
   '.agents/skills/**/*.md',
 ]
@@ -73,7 +75,8 @@ for (const file of uniqueRepoFiles(root, patterns, isArchivedAgentNotePath)) {
     const value = `${upstream}/${kind}/${sourceCommit}/${repoPath}${suffix}`
     const regionStart = node.position.start.offset
     const region = source.slice(regionStart, node.position.end.offset)
-    const localOffset = region.indexOf(node.url)
+    // A link label may itself display the target URL; the destination is the final occurrence.
+    const localOffset = region.lastIndexOf(node.url)
     if (localOffset === -1) {
       unresolved.push(`${relative(root, file.abs)}: ${node.url}`)
       return
@@ -94,7 +97,7 @@ for (const file of uniqueRepoFiles(root, patterns, isArchivedAgentNotePath)) {
   changedMarkdownFiles += 1
 }
 
-writeFileSync(resolve(root, 'research/r1-source-link-rewrite.json'), `${JSON.stringify({
+writeFileSync(resolve(root, reportPath), `${JSON.stringify({
   schemaVersion: 1,
   sourceCommit,
   changedMarkdownFiles,

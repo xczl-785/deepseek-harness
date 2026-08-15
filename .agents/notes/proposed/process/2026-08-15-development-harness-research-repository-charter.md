@@ -1,87 +1,85 @@
-# Agent Note: Development Harness Research Repository Charter
+# Agent Note: 开发 Harness 研究仓库改造与瘦身章程
 
 Status: proposed
 
-English | [中文](2026-08-15-development-harness-research-repository-charter.zh.md)
+## 问题
 
-## Problem
+这个分支仍然装着完整的 DeepSeek Harness 产品 monorepo，但它接下来的用途是研究仓库开发时使用的 Harness：Agent 工作流、工程规则、决策记录、文档方法、验证工具和有代表性的研发案例。产品运行源码、客户端、示例、第三方源码、发布工具和产品文档占据了绝大多数文件，使真正的研究对象难以识别和改造。
 
-This branch still contains the complete DeepSeek Harness product monorepo even though its intended use is research into the repository's development harness: agent workflows, engineering policy, decision records, documentation practice, validation tools, and representative development cases. Product runtime source, clients, examples, vendored dependencies, release machinery, and product documentation dominate the file count and make that research subject harder to identify and change.
+在来源提交 `1682b423980637a0103dfb07a22536a98af4bcee` 上，当前目录共有 7,412 个受 Git 管理的文件、47,679,648 字节。明显属于产品运行和交付面的目录共有 4,786 个文件、31,072,823 字节。细化语料之前删除这些内容，就能让仓库规模先下降约 65%；但直接删除目录会让活跃 Agent Notes 和文档失去证据链接，留下无法运行的产品耦合脚本，并抹掉解释研究案例所需的来源信息。
 
-The current tree has 7,412 tracked files and 47,679,648 tracked bytes at source commit `1682b423980637a0103dfb07a22536a98af4bcee`. The obvious product runtime and delivery directories account for 4,786 files and 31,072,823 bytes. Removing them can collapse the repository by about 65 percent before detailed corpus curation, but direct directory deletion would leave active Agent Notes and documentation with broken evidence links, retain product-coupled scripts that no longer run, and erase the provenance needed to interpret case studies.
+## 提案
 
-## Proposal
+将 `research/dsh-development-harness` 改造成一个从 DeepSeek Harness 提取、永久独立演进的研究仓库。这个分支研究产品是怎样被开发出来的，不再负责构建、运行、发布 DSH 产品，也不再保持可合回产品主线。`main` 和 `master` 继续承载当前产品源码，本分支独立拥有研究语料和研究工具。
 
-Turn `research/dsh-development-harness` into a permanently divergent research repository extracted from DeepSeek Harness. The branch studies how the product was developed; it does not remain a buildable, releasable, or merge-back-compatible distribution of the product. `main` and `master` remain the source repositories for current product code, while this branch owns its research corpus and tooling.
+完整目标是一个由五类内容组成的小型仓库：研究范围和来源记录、可复用 Agent Skills、经过选择的决策与事故记录、研发方法和案例、只验证保留内容的最小工具链。只有在研究语料确实需要时，产品源码才通过固定到 commit 的链接引用，或者作为自包含的最小案例摘录保留。
 
-The complete target is a small repository with five owned areas: research scope and source provenance, reusable agent skills, curated decision and incident records, development-method references and case studies, and a minimal toolchain that validates only the retained repository. Product source is cited through commit-pinned links or copied as a self-contained case excerpt only when the research corpus requires it.
+改造沿一条集成分支和四个结果波次推进。每个波次结束时都必须形成内部一致的检查点；仅仅达到删除数量不能容许保留文档出现断链、保留命令无法运行或来源无法追溯。
 
-The conversion follows one integration branch and four result waves. Each wave must leave a coherent checkpoint; a passing deletion count alone does not permit broken retained documents, non-running retained commands, or loss of source provenance.
+### 范围规则
 
-### Scope rules
+一项内容只有在直接规定或执行仓库研发行为、为保留的研发决策提供不可替代的长期证据，或者负责验证保留语料时才保留。一项内容如果主要用于运行、测试、打包、发布或说明 DeepSeek Harness 产品，就应删除。产品专属内容只有在比文字总结更能展示可复用研发方法时，才进入案例筛选。
 
-Keep an item when it directly defines or executes repository-development behavior, provides durable evidence for a retained development decision, or is required to validate the retained corpus. Delete an item when its primary job is to run, test, package, publish, or explain the DeepSeek Harness product. Curate an item when it is product-specific but demonstrates a reusable development method better than a prose summary can.
+目录和包名不能替代判断。`skill`、`subagent`、`workflow`、`hooks` 和 `test-support` 等 package 仍然属于产品源码，除非其中经过选择的片段成为案例。反过来，`scripts/` 下的脚本只有在提取之后，其依赖和输出全部属于研究仓库时才能留下。
 
-Names do not decide ownership. Product packages such as `skill`, `subagent`, `workflow`, `hooks`, and `test-support` remain product source unless a selected excerpt becomes a case study. Conversely, a script under `scripts/` remains only when its dependencies and outputs belong entirely to the research repository after extraction.
+数量下降只是安排顺序的工具，不是保留规则。第一个破坏性波次先处理可信度高、规模大的产品区域，之后才进行逐篇文档和逐条记录的细化。不能为了达到数字目标删除研究资产。
 
-Numerical reduction is an ordering tool, not a retention rule. The first destructive wave attacks high-confidence bulk product areas before performing sentence-level or note-level curation. It does not delete a research asset merely to meet a quota.
+### 版本链
 
-### Version chain
-
-| Version | Observable result | Todo | Deferred | Constraints | Acceptance criteria | Pending decisions |
+| 版本 | 可观察结果 | Todo | Deferred | Constraint | 验收条件 | 待裁决项 |
 | --- | --- | --- | --- | --- | --- | --- |
-| R0 — Charter and baseline | The extraction has a reviewable scope, source identity, and measured baseline. | Accept this charter; generate an exact keep/remove/curate manifest; record the product source and upstream identities. | Individual note and document judgments. | No product deletion; no rewrite of root guidance as if the target already existed. | Every top-level area has one disposition and an owner for mixed areas; the deletion candidate count is reproducible. | Final repository name and whether it will eventually leave this fork. |
-| R1 — Quantity collapse | Obvious product runtime and delivery planes are absent, and the retained repository has fewer than 3,000 tracked files unless the manifest exposes a justified exception. | Remove `packages/`, `apps/`, `examples/`, `vendor/`, `native/`, `python/`, `website/`, product assets and patches; remove product-only workflows; replace the workspace with the smallest runnable research toolchain; convert retained live references to commit-pinned source links or selected case material. | Fine-grained pruning inside Agent Notes and general documentation. | Preserve source provenance; do not edit frozen archived notes; do not keep dead commands; do not claim the product still builds. | At least 60 percent of baseline files and bytes are removed; every remaining package script runs or is explicitly absent; retained active Markdown has no broken local link; the tree is clean after the focused checks. | Whether archived product history remains locally or is represented only by Git history and source links. |
-| R2 — Corpus refinement | Every retained note, document, skill, and script belongs to an explicit research category. | Classify content as method, reusable tool, case study, historical evidence, or removal; consolidate duplicated rationale; reduce product-specific generated and user documentation; establish the language policy. | New research features and generalized automation. | Preserve unique rationale and incident evidence; paired material changes atomically; archived records remain frozen while retained. | No unclassified active corpus remains; each fact has one owner; research navigation reaches every retained category; corpus checks reject dead references and malformed records. | English-only, Chinese-only, or paired active corpus; archive retention policy. |
-| R3 — Harness operationalization | A researcher can use the retained skills and tools without the deleted product monorepo. | Generalize product-named skills where useful; create research fixtures; define focused checks; prove fresh-clone setup; add contributor and case-study templates. | Compatibility with the original DSH product tooling. | Reusable workflows must not silently depend on deleted paths, private local state, or the original product build. | Fresh setup installs only declared dependencies; every retained skill has a runnable or inspectable verification path; the focused CI passes on a clean checkout. | Which workflows remain DSH-specific case tools and which become repository-neutral. |
-| R4 — Governance closure | Repository identity, branch rules, contribution path, and documentation describe the actual slim tree. | Rewrite root `README.md` and `AGENTS.md`; slim GitHub templates and CI; publish the final structure and maintenance rules; resolve or assign every residual item. | Future studies and new case imports. | Root instructions contain standing orders only; README introduces the research repository rather than the DSH product. | A new researcher can identify purpose, source provenance, layout, setup, validation, contribution flow, and non-goals from the root documents; no retained rule points to a deleted owner. | Long-term synchronization policy for importing selected upstream evidence. |
+| R0 — 章程与基线 | 提取工作具有可审阅的范围、来源身份和规模基线。 | 接受本章程；生成精确的保留、删除、筛选清单；记录产品来源和上游身份。 | 逐篇 Agent Note 和文档判断。 | 不删除产品内容；根目录规则不能提前把未实现的目标写成现状。 | 每个顶层区域都有处置结论，混合区域有负责人；候选删除数量可重复计算。 | 最终仓库名称；将来是否离开当前 fork。 |
+| R1 — 数量坍缩 | 明显的产品运行和交付面消失；除非清单给出有依据的例外，受控文件数降到 3,000 以下。 | 删除 `packages/`、`apps/`、`examples/`、`vendor/`、`native/`、`python/`、`website/`、产品 assets 和 patches；删除产品专属工作流；建立最小可运行研究工具链；把保留内容中的有效引用改成固定来源链接或案例材料。 | Agent Notes 和通用文档内部的细粒度裁剪。 | 保留来源记录；不修改冻结的 archived notes；不保留死命令；不宣称产品仍能构建。 | 基线文件数和字节数都至少下降 60%；所有留下的 package script 都能运行，否则直接不存在；保留的活跃 Markdown 无本地断链；定向检查后工作树干净。 | archived 产品历史是本地保留，还是只由 Git 历史和来源链接表示。 |
+| R2 — 语料细化 | 每份保留的 Note、文档、Skill 和脚本都有明确研究类别。 | 将内容分类为方法、可复用工具、案例、历史证据或删除；合并重复依据；清除产品专属生成文档和用户文档；确立语言政策。 | 新研究功能和通用化自动化。 | 保留唯一决策依据和事故证据；双语材料成对变更；保留期间不修改冻结记录。 | 活跃语料不存在未分类内容；每个事实只有一个归属；研究导航能到达所有保留类别；语料检查拒绝断链和格式错误记录。 | 使用纯英文、纯中文还是活跃双语语料；archive 保留政策。 |
+| R3 — Harness 可用化 | 研究者无需被删除的产品 monorepo，也能使用保留的 Skills 和工具。 | 在有价值时通用化带产品名称的 Skills；建立研究 fixture；定义定向检查；验证全新 checkout 安装；增加贡献和案例模板。 | 与原 DSH 产品工具保持兼容。 | 可复用工作流不能暗中依赖已删除路径、本机私有状态或原产品构建。 | 全新环境只安装声明的依赖；每个保留 Skill 都有可运行或可检查的验证路径；定向 CI 在干净 checkout 上通过。 | 哪些工作流保留为 DSH 专属案例工具，哪些升级为仓库无关工具。 |
+| R4 — 治理收口 | 仓库身份、分支规则、贡献路径和文档准确描述瘦身后的真实目录。 | 重写根 `README.md` 和 `AGENTS.md`；精简 GitHub 模板和 CI；发布最终结构和维护规则；处理或分配所有残余项。 | 后续研究和新案例导入。 | 根指令只保留每次会话都需要的常驻规则；README 介绍研究仓库而不是 DSH 产品。 | 新研究者能从根文档识别用途、来源、目录、安装、验证、贡献流程和非目标；保留规则不指向被删除的归属文件。 | 长期导入上游研究证据的同步政策。 |
 
-### R1 deletion contract
+### R1 删除约定
 
-R1 is the first implementation priority because it removes high-confidence volume without first spending weeks classifying thousands of records. Its candidate set begins with the 4,786 files under `packages/`, `apps/`, `examples/`, `vendor/`, `native/`, `python/`, `website/`, `assets/`, and `patches/`. The exact manifest may retain a minimal case excerpt, but an exception must name the research question and cannot retain a whole product subtree for convenience.
+R1 是第一个实施重点，因为它可以先清理可信度高的数量，而不需要在几千条记录中逐条判断。候选集合首先包括 `packages/`、`apps/`、`examples/`、`vendor/`、`native/`、`python/`、`website/`、`assets/` 和 `patches/` 下的 4,786 个文件。精确清单可以保留最小案例摘录，但每个例外必须写明研究问题，不能因为方便而保留完整产品子树。
 
-Before deletion, R1 records the extraction source in a machine-readable source lock and inventories inbound links from retained active files. References needed for research become commit-pinned external links or point to selected local case material. References that merely support deleted product guidance disappear with that guidance. Product build, release, website, platform, snapshot, and runtime-verification commands leave with their owners; a surviving command must have a surviving input, output, and focused check.
+删除前，R1 需要用机器可读的 source lock 记录提取来源，并盘点保留活跃文件指向候选删除区的链接。研究所需引用要改成固定到 commit 的外部链接，或者指向选定的本地案例；只用于支持已删除产品说明的引用和说明一起删除。产品构建、发布、网站、平台、快照和运行时验证命令随其归属内容一起离开；留下的命令必须同时拥有仍然存在的输入、输出和定向检查。
 
-R1 may use several commits for reviewability, but every pushed checkpoint must state whether it is operational. A checkpoint that intentionally sits between bulk deletion and toolchain repair stays on the working branch and is not presented as an accepted version result.
+R1 可以为了审阅使用多个 commit，但每个推送的检查点都要说明是否已经可用。处于批量删除与工具链修复之间的中间提交只能留在工作分支上，不能作为已验收版本结果对外表述。
 
-### Repository invariants after extraction
+### 提取后的仓库不变量
 
-- The research branch never merges back into the product `main`; selected research improvements move by an explicit, separately reviewed port when appropriate.
-- The original product remains recoverable from the recorded source commit; this repository does not preserve duplicate source merely as a backup.
-- Every retained executable has declared dependencies and a focused validation command.
-- Every retained case identifies its question, source, selection rationale, and limits; a case does not become current product documentation.
-- Root guidance describes only the live research tree. Detailed workflow and rationale live in their owning documents.
-- Deferred items retain an owner, reason, and reconsideration trigger; omission from the current wave does not silently delete the decision.
+- 研究分支不合回产品 `main`；适合产品的研究改进通过单独评审的显式移植进入产品仓库。
+- 原产品始终能从记录的来源 commit 恢复；研究仓库不为备份目的重复保存产品源码。
+- 每个保留的可执行工具都声明依赖，并有定向验证命令。
+- 每个案例都说明研究问题、来源、选择原因和适用限制；案例不会成为当前产品文档。
+- 根目录规则只描述真实存在的研究目录；详细流程和依据留在各自归属文档。
+- Deferred 项必须有负责人、原因和重新审视条件；未进入当前波次不等于决策已经消失。
 
-### Result and integrity checks
+### 结果检查与完整性检查
 
-Each wave reports tracked file count and bytes against the R0 baseline, but validation follows the retained content. R1 checks source-lock integrity, active Markdown links, Agent Note structure for retained active notes, skill metadata, the minimal toolchain, and `git diff --check`. R2 adds corpus classification and navigation checks. R3 adds fresh-checkout setup and focused workflow tests. R4 audits all root instructions and CI paths against the final tree.
+每个波次都要报告相对 R0 的受控文件数和字节数，但验证内容由保留下来的对象决定。R1 检查 source lock、活跃 Markdown 链接、保留活跃 Agent Notes 的结构、Skill 元数据、最小工具链和 `git diff --check`。R2 增加语料分类和导航检查。R3 增加全新 checkout 安装与定向工作流测试。R4 按最终目录核对全部根指令和 CI 路径。
 
-Stop the current wave for user judgment when it would delete unique research evidence, change the treatment of frozen history, choose a permanent language policy, weaken source traceability, or expand the repository back into a product implementation. Ordinary broken links, dead script dependencies, and classification mistakes stay inside the current wave as repair work.
+当当前波次需要删除唯一研究证据、改变冻结历史的处理方式、选择永久语言政策、降低来源可追溯性，或者把仓库重新扩大成产品实现时，必须停止并由用户裁决。普通断链、脚本依赖缺失和分类错误属于当前波次的返工，不需要重新规划整条路线。
 
-## Alternatives considered
+## 考虑过的替代方案
 
-**Keep the complete product monorepo and add a research index.** Rejected because the product remains the dominant tree, dependency installation and checks remain product-sized, and the research subject continues to be obscured by more than four thousand product files.
+**保留完整产品 monorepo，只增加研究索引。** 不采用，因为产品仍然占据目录主体，依赖安装和检查仍保持产品规模，四千多个产品文件继续遮蔽研究对象。
 
-**Copy only the current skills into a new empty repository.** Rejected because skills without their decision records, failure evidence, documentation policies, and real cases lose the context that makes this repository valuable for research.
+**只把当前 Skills 复制到一个空仓库。** 不采用，因为 Skills 一旦离开决策记录、失败证据、文档规则和真实案例，就会失去本仓库最值得研究的上下文。
 
-**Delete by top-level directory and repair damage later.** Rejected because active records rely on product paths as evidence and mixed scripts combine product and development checks. This would create a smaller but internally false repository.
+**按顶层目录直接删除，之后再修复。** 不采用，因为活跃记录把产品路径当作证据，混合脚本也同时执行产品检查和研发检查。这样得到的是更小但内部失真的仓库。
 
-**Finish detailed note-by-note curation before bulk deletion.** Rejected for the first phase because it spends most effort inside a tree whose high-confidence product planes are already known. Bulk removal with provenance and link handling produces an earlier coherent research baseline; detailed curation then operates on the smaller tree.
+**批量删除前完成逐条 Note 和文档筛选。** 第一阶段不采用，因为这会把大部分精力花在已经明确属于产品面的巨大目录里。先处理来源和引用，再做批量删除，可以更早获得内部一致的研究基线，细化工作也能在更小的目录上进行。
 
-**Keep the research branch synchronized with product changes.** Rejected because regular merges would repeatedly restore deleted product areas and make research-specific governance subordinate to the product layout. Selected evidence imports are explicit and source-pinned instead.
+**保持研究分支持续同步产品变更。** 不采用，因为常规合并会不断恢复被删产品区域，并让研究治理继续受产品目录支配。后续只通过显式、固定来源的方式导入选定证据。
 
-## Acceptance criteria
+## 验收标准
 
-- The user accepts the branch purpose, retention rules, version chain, and R1 deletion contract.
-- An R0 manifest can classify every tracked top-level area as keep, remove, curate, or mixed without using package names as a shortcut.
-- The R1 candidate set reproducibly identifies at least 60 percent of baseline files and bytes while listing every exception.
-- Every version states its Todo, Deferred work, constraints, observable acceptance criteria, and pending decisions.
-- The plan preserves a traceable route from retained research evidence to the original source commit and does not require the slim repository to build or publish the DSH product.
-- Root README and AGENTS rewrites remain an R4 closeout task rather than describing an unbuilt target during R1.
+- 用户接受分支用途、保留规则、版本链和 R1 删除约定。
+- R0 清单能够把每个受控顶层区域分类为保留、删除、筛选或混合，且不以 package 名称替代判断。
+- R1 候选集合可重复识别至少 60% 的基线文件数和字节数，并列出每个例外。
+- 每个版本都明确 Todo、Deferred、Constraint、可观察验收条件和待裁决项。
+- 方案保留从研究证据到原始来源 commit 的可追溯路径，并且不要求瘦身后的仓库继续构建或发布 DSH 产品。
+- 根 README 和 AGENTS 的重写留在 R4 收口阶段，不能在 R1 把未完成的目标写成现状。
 
-## Risks
+## 风险
 
-Commit-pinned links depend on continued remote availability; selected high-value cases may need self-contained local excerpts with clear licensing and provenance. Keeping all Agent Notes through R1 preserves research value but also preserves most of the remaining file count, so the second reduction will require semantic curation rather than another directory-only deletion.
+固定到 commit 的链接依赖远端继续可用；少量高价值案例可能需要保留自包含本地摘录，并明确许可和来源。R1 保留全部 Agent Notes 能保存研究价值，但也会留下大部分剩余文件，因此第二轮下降必须依靠语义筛选，而不能再靠目录级删除。
 
-The existing bilingual and archived-note rules can make broad corpus edits expensive. R2 must decide language and archive policy explicitly instead of using file-count pressure to discard one language or rewrite frozen records. Tool extraction can also reveal hidden imports from product helpers; R1 must delete or replace such commands rather than retain a misleading script name.
+现有双语和 archived note 规则会让大规模语料修改成本较高。R2 必须明确裁决语言和 archive 政策，不能利用文件数量压力直接丢弃一种语言或改写冻结记录。工具提取也可能暴露对产品 helper 的隐藏引用；R1 应删除或替换这些命令，而不是保留具有误导性的脚本名称。
