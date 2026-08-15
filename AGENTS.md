@@ -4,7 +4,13 @@ DeepSeek Harness is a plugin-based agent harness on vendored Cordis: **everythin
 
 ## Pre-release stance: foundation over blast radius
 
-**Remove this section at the first tagged release.** With no external consumers, prefer the correct foundation over compatibility shims: rename or repackage freely and update every reference together. Backends reject old on-disk formats. SQLite uses monotonic `SCHEMA_VERSION`; `dsh-session` keeps `SESSION_FORMAT_VERSION` at `0` with no compatibility promise.
+**Remove this section at the first tagged release.** With no external consumers, prefer correct foundations over compatibility shims; rename or repackage freely and update every reference. Backends reject old on-disk formats. SQLite uses monotonic `SCHEMA_VERSION`; `dsh-session` keeps `SESSION_FORMAT_VERSION` at `0` without compatibility promises.
+
+## Fork branches
+
+- `master` mirrors `deepseek-ai/deepseek-harness:master`; update it only with GitHub's Sync fork. Never develop, merge pull requests, or push there.
+- `main` is this fork's default integration branch. Create change branches from it and merge through pull requests; never force-push or delete protected branches.
+- `research/*` is for researching DSH development infrastructure: skills, Agent Notes, documentation, and workflows; never use it for product delivery.
 
 ## Repository layout
 
@@ -134,15 +140,15 @@ Read [docs/defensive-patterns.md](docs/defensive-patterns.md) before lifecycle, 
 
 ## Type safety and documentation
 
-Everything compiles under `strict: true` with `noImplicitAny`; every remaining `any` explains why narrowing is infeasible. Every module and export has concise JSDoc for its non-obvious contract; function-like exports include `@param`/`@returns`, as enforced by `verify-export-jsdoc`. Heritage-declared members, plugin-protocol slots, and constructors keep their docs at the declaring Service Definition, protocol, or class.
+Compile under `strict: true` with `noImplicitAny`; explain why every remaining `any` cannot be narrowed. Give every module and export concise JSDoc for non-obvious contracts; `verify-export-jsdoc` requires `@param`/`@returns` on function-like exports. Document heritage-declared members, plugin-protocol slots, and constructors at their declaring Service Definition, protocol, or class.
 
-Comments and docs state complete contracts and context, not reasoning transcripts. Use direct, concrete terms. Do not use metaphors. Before writing `contract`, `boundary`, or `shape`, ask whether a more exact term names the subject: write `response fields`, `JSON validation`, or `ESM exports` instead of `response shape`, `validation boundary`, or `module shape`. Keep `contract` for preconditions, postconditions, invariants, compatibility promises, and other obligations that callers, callees, implementers, providers, producers, or consumers rely on. Keep a literal process, wire, security, transaction, or lifecycle boundary. Do not narrate control flow or tests, preserve review history, or restate code. Keep behavior, failure, timing, ownership, and safe-use facts; link the rationale. Use [dsh-prose-standard](.agents/skills/dsh-prose-standard/SKILL.md) for decisions. Wire mechanically checkable invariants into an executed top-level gate and prove each changed acceptance path rejects an invalid case. Use narrow, justified exceptions instead of disabling a rule globally.
+Comments and docs state complete contracts and context, not reasoning transcripts. Use direct, concrete terms without metaphors. Prefer exact subjects such as `response fields`, `JSON validation`, or `ESM exports` to vague `contract`, `boundary`, or `shape`; reserve `contract` for caller or implementer obligations and `boundary` for literal process, wire, security, transaction, or lifecycle divisions. Do not narrate control flow or tests, preserve review history, or restate code. Keep behavior, failure, timing, ownership, and safe-use facts; link the rationale and use [dsh-prose-standard](.agents/skills/dsh-prose-standard/SKILL.md) for decisions. Wire mechanically checkable invariants into an executed top-level gate, prove each changed acceptance path rejects an invalid case, and use narrow justified exceptions.
 
-Docs accompany every code change: update affected README and JSDoc contracts together. Routine bilingual work follows [docs/AGENTS.md](docs/AGENTS.md); only explicit user invocation may run `dsh-translate-docs`. Current-state prose, one physical line per paragraph, one home per fact, and word budgets live there.
+Code changes update affected README and JSDoc contracts. Follow [docs/AGENTS.md](docs/AGENTS.md) for bilingual work and prose rules; run `dsh-translate-docs` only on explicit user request.
 
 ## Editing these instructions
 
-`CLAUDE.md` symlinks `AGENTS.md` at root, `packages/`, and `examples/`; edit the real file. Keep each rule self-contained while linking high-level docs. Condense when clarity survives; raise a `verify-doc-budgets` ceiling when the required content genuinely needs more space.
+`CLAUDE.md` symlinks `AGENTS.md` at root, `packages/`, and `examples/`; edit the real file. Keep rules self-contained and link high-level docs. Condense when clear; raise a `verify-doc-budgets` ceiling only for necessary content.
 
 ## Vendoring policy
 
