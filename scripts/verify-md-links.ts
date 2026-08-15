@@ -21,7 +21,7 @@ const PATTERNS = [
   '.agents/notes/**/*.md',
   '.github/**/*.md',
   'docs/**/*.md',
-  'research/README.md',
+  'research/*.md',
   'AGENTS.md',
   '.agents/skills/**/*.md',
   'scripts/**/*.md',

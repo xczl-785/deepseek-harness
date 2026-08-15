@@ -4,14 +4,15 @@
 
 ## 当前规则与研究议程
 
-- [现场还原研究章程](../.agents/notes/implemented/process/2026-08-15-scene-reconstruction-driven-development-harness-research.md)定义研究单位、证据等级、重放方式和结论门槛。
+- [场景驱动研究与采用章程](../.agents/notes/implemented/process/2026-08-15-scenario-driven-development-harness-adoption.md)定义使用场景、复用等级、快速采用和按需深挖方式。
 - [中文主语料决策](../.agents/notes/implemented/process/2026-08-15-chinese-primary-research-corpus.md)定义语言、历史和分类政策。
 - [活跃提案](../.agents/notes/proposed/)保存仍值得研究的方法问题；`implemented/` 只保存当前研究仓库的已实施决定。
 
-专题研究先选择一个证据完整的真实开发现场，固定任务、源码、规则、工具、操作和结果，再区分直接事实、证据支持的还原、研究推断与未知项。每个现场默认只产生一份必要记录；两个不同现场支持同一机制后，才形成稳定发现。首个现场计划研究“非平凡改动从开发完成到安全推送”。
+研究先说明 Harness 在开发生命周期中的使用场景，再将现有资产分类为直接可用、轻量适配、研究材料或需要深挖。默认先提取最小可用切片并在真实任务中使用；历史现场还原只由证据冲突、高风险约束或试用失败触发。
 
 ## 可复用工具
 
+- [最小开发 Harness v0](harness-v0.md)把当前规则、范围报告、决策记录、文档检查、Git hook 和 CI 连接成可直接执行的开发链，并记录安装、验证和移除方式。
 - [`scripts/`](../scripts/)保存分类、链接、Markdown、提示词、变更范围和静态检查工具；运行 `pnpm run check` 验证当前集合。
 - [翻译提示词](../docs/i18n/translation-prompt.md)、[术语表](../docs/i18n/terminology.md)和[语体样例](../docs/i18n/style-samples.md)是仍可执行的翻译研究工具。
 - 当前没有活跃仓库 Skill。原 DSH Skills 作为研究现场证据保存在 [`cases/skills/`](cases/skills/)，不会被自动调用。

@@ -7,7 +7,7 @@
 ## 从哪里开始
 
 1. 阅读[研究导航](research/README.md)，了解当前材料、工具和案例。
-2. 阅读[现场还原研究章程](.agents/notes/implemented/process/2026-08-15-scene-reconstruction-driven-development-harness-research.md)，了解如何开展研究。
+2. 阅读[场景驱动研究与采用章程](.agents/notes/implemented/process/2026-08-15-scenario-driven-development-harness-adoption.md)，了解如何理解场景并提取可用 Harness。
 3. 通过 [source lock](research/source-lock.json)确认研究材料对应的官方仓库和固定提交。
 
 ## 仓库内容
@@ -39,7 +39,7 @@ pnpm run hooks:install
 
 ## 研究原则
 
-研究从真实开发现场出发：先固定任务、源码、规则、工具、操作和结果，再区分直接事实、证据支持的还原与研究推断。一个现场只产生暂定结论；需要跨现场验证后，才能提升为稳定方法。研究默认只写必要记录，只有重复使用价值已经得到证明时才提取 Skill 或脚本。
+研究从 Harness 使用场景出发：先说明何时介入、接收什么输入、执行什么动作、如何反馈和产生什么结果，再判断现有资产能否直接使用、轻量适配或只作研究材料。研究默认先交付最小可用切片并在真实任务中验证；只有证据冲突、高风险约束或试用失败时才深挖历史现场。
 
 ## 非目标
 
