@@ -5,7 +5,7 @@ description: Use when publishing, updating, moving, or removing DeepSeek Harness
 
 # Synchronizing the DeepSeek Harness Documentation Site
 
-Keep repository Markdown as the only editable content source. Treat the website as a tested projection: [website/docs.ts](../../../website/docs.ts) selects public pages, [scripts/project-doc-site.ts](../../../scripts/project-doc-site.ts) rewrites them into the disposable `website/.generated/` tree, and VitePress builds that tree.
+Keep repository Markdown as the only editable content source. Treat the website as a tested projection: [website/docs.ts](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/website/docs.ts) selects public pages, [scripts/project-doc-site.ts](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/scripts/project-doc-site.ts) rewrites them into the disposable `website/.generated/` tree, and VitePress builds that tree.
 
 Repository translations follow the sibling pairing contract: English `foo.md`, Chinese `foo.zh.md`, and `foo.i18n.yaml` live together. Never create `zh-CN/` or other locale directories for website content. The site route trees are independent of that source layout: `foo.zh.md` projects to the root route and `foo.md` projects to the matching `/en/` route.
 
@@ -13,8 +13,8 @@ Repository translations follow the sibling pairing contract: English `foo.md`, C
 
 - Read [docs/AGENTS.md](../../../docs/AGENTS.md) and use [dsh-doc-standards](../dsh-doc-standards/SKILL.md) when deciding where content belongs or changing product documentation prose.
 - For an edited bilingual source, follow the lightweight routine path in [docs/AGENTS.md](../../../docs/AGENTS.md#writing-rules) and the [pairing contract](../../../docs/i18n/README.md); never invoke the extended translation skill automatically.
-- Read the current `DocsPage` type and entries in [website/docs.ts](../../../website/docs.ts) before changing the manifest; do not rely on a remembered field set.
-- Read [website/.vitepress/config.ts](../../../website/.vitepress/config.ts) before adding a new section, sidebar collection, locale, or top-level navigation item.
+- Read the current `DocsPage` type and entries in [website/docs.ts](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/website/docs.ts) before changing the manifest; do not rely on a remembered field set.
+- Read [website/.vitepress/config.ts](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/website/.vitepress/config.ts) before adding a new section, sidebar collection, locale, or top-level navigation item.
 
 ## Classify the change
 

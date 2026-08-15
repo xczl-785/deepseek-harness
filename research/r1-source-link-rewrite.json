@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "47f943859bef60e4160492346772ded9b24f765a",
+  "changedMarkdownFiles": 94,
+  "rewrittenLinks": 3648,
+  "unresolvedLinks": 0,
+  "verification": "pnpm run verify-md-links"
+}

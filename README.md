@@ -2,6 +2,8 @@
 
 English | [中文](README.zh.md)
 
+> **Research extraction branch:** `research/dsh-development-harness` is not a runnable or publishable DeepSeek Harness checkout. Product descriptions and commands below are retained temporarily as R2 classification material and refer to the [recorded product source](research/source-lock.json); use `pnpm run check` to validate this research repository.
+
 DeepSeek Harness (`dsh`) is an open-source agent harness developed by [DeepSeek AI](https://deepseek.com).
 
 It uses an architecture where **everything is a plugin**, and is powered by [Cordis](https://github.com/cordiverse/cordis), whose design is described in [_A Programming Paradigm for Spatiotemporal Composability_](https://github.com/cordiverse/paper).
@@ -54,4 +56,4 @@ For agents, follow [AGENTS.md](AGENTS.md).
 
 [MIT](LICENSE)
 
-Third-party dependencies and their licenses are disclosed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Third-party dependencies and their licenses are disclosed in [THIRD_PARTY_NOTICES.md](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/THIRD_PARTY_NOTICES.md).

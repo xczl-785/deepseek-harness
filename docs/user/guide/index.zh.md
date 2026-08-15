@@ -26,5 +26,5 @@ agent 可以读取和编辑工作区文件、运行命令、委派工作并维�
 
 - [配置模型](./providers.md)
 - [使用 Python SDK](./python-sdk.md)
-- [使用其他 CLI 模式](../../../apps/cli/README.md)
+- [使用其他 CLI 模式](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/apps/cli/README.md)
 - [开发插件](../develop/basic/)

@@ -25,5 +25,13 @@
     ],
     "trackedFiles": 4786,
     "trackedBytes": 31072823
+  },
+  "r1Result": {
+    "trackedFiles": 2497,
+    "trackedBytes": 15074769,
+    "fileReductionPercent": 66.31,
+    "byteReductionPercent": 68.38,
+    "rewrittenSourceLinks": 3648,
+    "sourceLinkRewriteReport": "r1-source-link-rewrite.json"
   }
 }

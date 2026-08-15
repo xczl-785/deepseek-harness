@@ -16,7 +16,7 @@ This follows code-server's fullscreen choice without copying its `window-control
 
 The manifest deliberately has no `lang`, `theme_color`, or `background_color`. The product surface is bilingual rather than owned by one manifest language, and either static color can disagree with one of the resolved app palettes. Theme metadata therefore remains outside the install manifest.
 
-This feature adds no service worker, cache policy, or offline fallback. The manifest supplies install metadata only; browser eligibility and install affordances remain browser policy. The shipped [`dsh-host-frontend-static`](../../../../packages/host/frontend-static/README.md) fallback recognizes `.webmanifest` as `application/manifest+json` so the same asset is valid through the shipped HTTP composition rather than only in Vite's output directory.
+This feature adds no service worker, cache policy, or offline fallback. The manifest supplies install metadata only; browser eligibility and install affordances remain browser policy. The shipped [`dsh-host-frontend-static`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/host/frontend-static/README.md) fallback recognizes `.webmanifest` as `application/manifest+json` so the same asset is valid through the shipped HTTP composition rather than only in Vite's output directory.
 
 ## Verification
 

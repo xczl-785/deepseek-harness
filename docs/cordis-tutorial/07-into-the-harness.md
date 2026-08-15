@@ -95,7 +95,7 @@ The logger fired first: `tools/result` is emitted as part of result materializat
 
 ## From here to a full agent
 
-A real agent is this composition plus more plugins: an LLM adapter, the agent loop, persistence, an entry point. Compare [examples/headless-agent/cordis.yml](../../examples/headless-agent/cordis.yml) — you can read every entry in it now. Add your `greet-tool.ts` to a copy of that file.
+A real agent is this composition plus more plugins: an LLM adapter, the agent loop, persistence, an entry point. Compare [examples/headless-agent/cordis.yml](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/examples/headless-agent/cordis.yml) — you can read every entry in it now. Add your `greet-tool.ts` to a copy of that file.
 
 Where to go next:
 

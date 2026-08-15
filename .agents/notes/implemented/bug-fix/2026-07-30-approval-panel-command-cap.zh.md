@@ -18,7 +18,7 @@ Status: implemented
 
 该区域自身是一个 Tab 停靠点（`tabIndex={0}`，带名称的 `role="group"`）。提问 composer 的滚动体不需要这样做——它的选项行本身可聚焦，会把容器一起带过去；而这里除文本之外别无内容：没有自己的停靠点，仅用键盘的用户能走到按钮却走不到命令尾部，于是可能批准了自己没读完的东西。
 
-面板卡片把 `--dsh-scrollbar-thumb{,-hover}` 重新绑定到 l2 那一对，这是每一个位于高层表面上的滚动区域都必须做的（[滚动条约定](../../../../packages/client/ui-theme/src/styles/scrollbar.css)）。
+面板卡片把 `--dsh-scrollbar-thumb{,-hover}` 重新绑定到 l2 那一对，这是每一个位于高层表面上的滚动区域都必须做的（[滚动条约定](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/client/ui-theme/src/styles/scrollbar.css)）。
 
 ## 曾考虑的替代方案
 

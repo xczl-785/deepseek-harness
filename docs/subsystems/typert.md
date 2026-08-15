@@ -2,7 +2,7 @@
 
 English | [中文](typert.zh.md)
 
-Types shared by generated Remote artifacts, the Host Gateway, and consumer API assemblies. The [Typert Gateway Agent Note](../../.agents/notes/implemented/architecture/2026-08-02-typert-remote-method-calls.md) owns the architecture and transport decisions; this page records the literal public contracts from [`dsh-typert-protocol`](../../packages/typert/protocol/src/types.ts) and [`dsh-api-gateway`](../../packages/api/gateway/src/types.ts).
+Types shared by generated Remote artifacts, the Host Gateway, and consumer API assemblies. The [Typert Gateway Agent Note](../../.agents/notes/implemented/architecture/2026-08-02-typert-remote-method-calls.md) owns the architecture and transport decisions; this page records the literal public contracts from [`dsh-typert-protocol`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/typert/protocol/src/types.ts) and [`dsh-api-gateway`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/api/gateway/src/types.ts).
 
 ## Lookup and Context declarations
 
@@ -248,7 +248,7 @@ Root interface of the unified API. New client-request domain = one new file pair
 respond(message: ClientResponse): Promise<RpcReceipt>
 ```
 
-Source: [`packages/host/apiproxy/src/api/index.ts:22`](../../packages/host/apiproxy/src/api/index.ts)
+Source: [`packages/host/apiproxy/src/api/index.ts:22`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/host/apiproxy/src/api/index.ts)
 
 <a id="ctxtypert--typertregistry"></a>
 
@@ -314,7 +314,7 @@ toJSONSchema(key: string, params?: z.core.ToJSONSchemaParams): z.core.JSONSchema
 
 Types: [TypertContribution](invariants.md) · [TypertFace](invariants.md) · [TypertPackageFilter](invariants.md) · [TypertPackageRecord](invariants.md) · [TypertSchemaFilter](invariants.md) · [TypertSchemaRecord](invariants.md)
 
-Source: [`packages/typert/registry/src/service.ts:446`](../../packages/typert/registry/src/service.ts)
+Source: [`packages/typert/registry/src/service.ts:446`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/typert/registry/src/service.ts)
 
 <a id="ctxtypertgateway--typertgatewayservice"></a>
 
@@ -332,5 +332,5 @@ Resolve strict generated definitions or conservative SRC markers against current
 async invoke(request: InvokeRemoteRequest): Promise<unknown>
 ```
 
-Source: [`packages/api/gateway/src/index.ts:90`](../../packages/api/gateway/src/index.ts)
+Source: [`packages/api/gateway/src/index.ts:90`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/api/gateway/src/index.ts)
 <!-- END GENERATED cordis-surface -->

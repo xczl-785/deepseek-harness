@@ -10,7 +10,7 @@ Status: implemented
 
 ## Decision
 
-vendor 中的 Cordis 生命周期和 Loader 插件提供可等待、带补偿的配置事务，并在 [vendor/README.md](../../../../vendor/README.md) 中记录为本地修改第 6、8、9 条。
+vendor 中的 Cordis 生命周期和 Loader 插件提供可等待、带补偿的配置事务，并在 [vendor/README.md](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/vendor/README.md) 中记录为本地修改第 6、8、9 条。
 
 `Fiber.update()` 返回其 `internal/update` waterfall（瀑布式事件）的结果。配置校验保持同步，而默认 continuation 返回重启 promise。因此，Loader 配置项更新可以区分校验、导入、应用和回滚失败，以及生命周期成功完成。`EntryTree.await()` 会在 Loader 任务排空后重新检查受服务门控的 fiber，并在 fiber 已结算为失败时 reject；等待缺失服务的 fiber 仍是有效的 pending 配置项，不会让结算挂起。
 

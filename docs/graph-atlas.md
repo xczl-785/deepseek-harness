@@ -12,9 +12,9 @@ The process decision behind this index is recorded in [the documentation graph A
 | [module dependency graph](module-graph.md) | `generated` |
 | [tool schema catalog and package map](tool-catalog.md) | `generated` |
 | [capability seams and core services](capability-seams.md) | `hybrid generated` |
-| [dsh shared base composition](../apps/cli/composition.md) | `hybrid generated` |
-| [headless-agent app composition](../examples/headless-agent/composition.md) | `hybrid generated` |
-| [acp-agent app composition](../examples/acp-agent/composition.md) | `hybrid generated` |
+| [dsh shared base composition](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/apps/cli/composition.md) | `hybrid generated` |
+| [headless-agent app composition](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/examples/headless-agent/composition.md) | `hybrid generated` |
+| [acp-agent app composition](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/examples/acp-agent/composition.md) | `hybrid generated` |
 | [event producer/consumer matrix](event-producer-consumer.md) | `hybrid generated` |
 | [agent turn and step lifecycle](agent-lifecycle.md) | `curated` |
 | [tool execution pipeline](tool-execution-pipeline.md) | `curated` |

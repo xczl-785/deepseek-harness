@@ -18,7 +18,7 @@ The cap is one value with two consumers, declared as `--dsh-composer-text-max-he
 
 The region is a tab stop (`tabIndex={0}`, named `role="group"`). Unlike the question composer's scroll body, whose option rows are focusable and pull the container along, this one holds nothing but text: without its own tab stop a keyboard-only user could reach the buttons and never the command's tail, and approve what they could not finish reading.
 
-The panel's card rebinds `--dsh-scrollbar-thumb{,-hover}` to the l2 pair, as every scrolling surface on an elevated background must ([scrollbar contract](../../../../packages/client/ui-theme/src/styles/scrollbar.css)).
+The panel's card rebinds `--dsh-scrollbar-thumb{,-hover}` to the l2 pair, as every scrolling surface on an elevated background must ([scrollbar contract](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/client/ui-theme/src/styles/scrollbar.css)).
 
 ## Alternatives considered
 

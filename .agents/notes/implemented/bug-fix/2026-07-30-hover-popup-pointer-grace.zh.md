@@ -10,7 +10,7 @@ Status: implemented
 
 ## 决策
 
-`usePointerGrace`（[packages/client/ui-primitives/src/pointer-grace.ts](../../../../packages/client/ui-primitives/src/pointer-grace.ts)）持有唯一一个可取消的延迟关闭，由两个原子组件共享，`POINTER_GRACE_MS` 为 200。离开会启动关闭，折返则取消它。因此指针可以安全穿越锚点与弹层之间的间隙，而真正移开的指针仍会关闭弹层。
+`usePointerGrace`（[packages/client/ui-primitives/src/pointer-grace.ts](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/client/ui-primitives/src/pointer-grace.ts)）持有唯一一个可取消的延迟关闭，由两个原子组件共享，`POINTER_GRACE_MS` 为 200。离开会启动关闭，折返则取消它。因此指针可以安全穿越锚点与弹层之间的间隙，而真正移开的指针仍会关闭弹层。
 
 `HoverCard` 在离开时启动宽限期而不再立即关闭，其卡片也不再设置 `pointer-events: none`，因此指针停在卡片上即可让它保持打开。在已打开状态下重新进入只取消待执行的关闭，而不重启停留计时，从而避免指针穿越间隙时卡片闪烁。在卡片上按下指针用于开始文本选择，不会关闭卡片；只有在锚点区域内发生按下操作，或所有者将 `disabled` 置真时，才会抢在宽限期之前立即关闭卡片。
 

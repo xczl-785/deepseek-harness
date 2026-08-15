@@ -41,11 +41,11 @@ Stderr remains an in-band attribution channel. A confined child can deliberately
 ## Guardrails added
 
 - [`RunnerFailureRule`](../subsystems/sandbox.md#wrapped-argv-and-classification-dialects) carries optional allowed exit codes, case-insensitive per-line fatal signatures, and case-insensitive exact informational-line exclusions.
-- [`dsh-sandbox-local`](../../packages/sandbox/sandbox-local/) maps Landlock to exit 125 plus a non-notice `landlock-run:` line while bwrap, Seatbelt, and custom runners remain signature-only.
-- [`dsh-bash-sandbox`](../../packages/shell/bash-sandbox/) directly spawns the provider argv, so a pre-start rejection uses the spawn-error channel instead of localized shell diagnostics. Settled foreground and background execution share one evidence-returning classifier; fatal evidence outranks denial, and foreground errors report the matched fatal line without changing captured stderr.
-- [`dsh-tool-fs-search`](../../packages/fs/tool-fs-search/) uses packaged ripgrep through `ctx.subprocess` and remains outside the sandboxed bash seam.
-- The native-boundary regression cases live in [`partial-landlock.spec.ts`](../../packages/shell/bash-sandbox/tests/partial-landlock.spec.ts), including informational notices, fatal evidence, and foreground/background classification.
-- The assembled product path is pinned by the [`partial-landlock` snapshot composition](../../examples/acp-agent/partial-landlock.cordis.snapshot.yml), independently of filesystem-search implementation choices.
+- [`dsh-sandbox-local`](https://github.com/deepseek-ai/deepseek-harness/tree/47f943859bef60e4160492346772ded9b24f765a/packages/sandbox/sandbox-local) maps Landlock to exit 125 plus a non-notice `landlock-run:` line while bwrap, Seatbelt, and custom runners remain signature-only.
+- [`dsh-bash-sandbox`](https://github.com/deepseek-ai/deepseek-harness/tree/47f943859bef60e4160492346772ded9b24f765a/packages/shell/bash-sandbox) directly spawns the provider argv, so a pre-start rejection uses the spawn-error channel instead of localized shell diagnostics. Settled foreground and background execution share one evidence-returning classifier; fatal evidence outranks denial, and foreground errors report the matched fatal line without changing captured stderr.
+- [`dsh-tool-fs-search`](https://github.com/deepseek-ai/deepseek-harness/tree/47f943859bef60e4160492346772ded9b24f765a/packages/fs/tool-fs-search) uses packaged ripgrep through `ctx.subprocess` and remains outside the sandboxed bash seam.
+- The native-boundary regression cases live in [`partial-landlock.spec.ts`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/shell/bash-sandbox/tests/partial-landlock.spec.ts), including informational notices, fatal evidence, and foreground/background classification.
+- The assembled product path is pinned by the [`partial-landlock` snapshot composition](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/examples/acp-agent/partial-landlock.cordis.snapshot.yml), independently of filesystem-search implementation choices.
 
 ## Lessons
 

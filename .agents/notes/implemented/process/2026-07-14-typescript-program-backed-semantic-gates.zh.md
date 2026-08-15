@@ -20,13 +20,13 @@ Status: implemented
 
 ### 一个项目模型展开根项目配置
 
-[`TypeScriptProject`](../../../../scripts/ts-project.ts) 解析根 `tsconfig.json`，递归展开每个项目引用，并将各引用项目的源码根合并为一个不输出文件的语义 Program。直接从根项目配置创建普通 Program 时，TypeScript 可能将引用项目重定向到构建后的声明文件；显式展开可以让门禁继续遍历各包的 `src` 文件，并保留符号同一性。
+[`TypeScriptProject`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/scripts/ts-project.ts) 解析根 `tsconfig.json`，递归展开每个项目引用，并将各引用项目的源码根合并为一个不输出文件的语义 Program。直接从根项目配置创建普通 Program 时，TypeScript 可能将引用项目重定向到构建后的声明文件；显式展开可以让门禁继续遍历各包的 `src` 文件，并保留符号同一性。
 
 该封装统一负责配置诊断、语义编译选项、仓库相对路径、源码查找和共享 TypeChecker。各门禁不再自行按文件通配模式扫描包源码，也不再分别构建不完整的 Program。
 
 ### A. 事件关系由接收者类型和值类型决定
 
-[`gen-doc-graphs`](../../../../scripts/gen-doc-graphs.ts) 根据调用接收者与仓库中真实 `Context`、`AgentEventDispatch` 和 Cordis `EventsService` 类型之间的可赋值关系进行分类。变量名和属性拼写不再决定某次调用是否属于事件操作。
+[`gen-doc-graphs`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/scripts/gen-doc-graphs.ts) 根据调用接收者与仓库中真实 `Context`、`AgentEventDispatch` 和 Cordis `EventsService` 类型之间的可赋值关系进行分类。变量名和属性拼写不再决定某次调用是否属于事件操作。
 
 Context 与 AgentEventDispatch 调用只贡献由字符串字面量构成的有限事件集合。对于直接调用 `EventsService.dispatch()` 的路径，生成器会沿数组字面量、常量别名、条件分支和未导出本地辅助函数的已解析调用点恢复事件槽位。泛型转发参数不算作具体生产方：事件仍归属于传入封闭事件值的调用点。
 
@@ -36,11 +36,11 @@ Context 与 AgentEventDispatch 调用只贡献由字符串字面量构成的有�
 
 ### B. 带作用域的事件路由生成一份强类型解析函数表
 
-[`gen-scoped-events`](../../../../scripts/gen-scoped-events.ts) 扫描真实的 `scopeTarget(base, key)` 调用，为每种 scoped 基础对象确定路由键类型。随后，它查找带有 `this: Scoped<Base>` 的 Cordis `Events` 成员，并在每个事件参数及其第一层公开属性中搜索与该键匹配的类型；移除 `null` 和 `undefined` 后，候选类型必须与路由键类型完全相同。
+[`gen-scoped-events`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/scripts/gen-scoped-events.ts) 扫描真实的 `scopeTarget(base, key)` 调用，为每种 scoped 基础对象确定路由键类型。随后，它查找带有 `this: Scoped<Base>` 的 Cordis `Events` 成员，并在每个事件参数及其第一层公开属性中搜索与该键匹配的类型；移除 `null` 和 `undefined` 后，候选类型必须与路由键类型完全相同。
 
 恰好一个匹配项会生成解析函数。存在多个匹配项时，含义不明确，生成器会失败。没有匹配项时，事件必须标记 `@dshScopeScan unsupported`；该标记只用于路由键有意留在事件参数之外的情况，例如按所属 agent（智能体）路由的会话事件和按父 agent 路由的 subagent 生命周期事件。此标记只表示扫描不受支持，不编码事件名、参数下标、属性路径或替代类型。
 
-提交到仓库的 [`scoped-events.generated.ts`](../../../../packages/core/scope/src/scoped-events.generated.ts) 是位于 scoped dispatch 所属包中的纯运行时映射，不导入任何事件声明方包。语义完整性由生成器自身保证：根 Program 枚举所有 scoped `Events` 声明与真实 `scopeTarget` 约定，通过 checker 解析唯一的 payload 路径，并在渲染 `unknown[]` 运行时边界前拒绝缺失、陈旧或含义不明确的条目。
+提交到仓库的 [`scoped-events.generated.ts`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/core/scope/src/scoped-events.generated.ts) 是位于 scoped dispatch 所属包中的纯运行时映射，不导入任何事件声明方包。语义完整性由生成器自身保证：根 Program 枚举所有 scoped `Events` 声明与真实 `scopeTarget` 约定，通过 checker 解析唯一的 payload 路径，并在渲染 `unknown[]` 运行时边界前拒绝缺失、陈旧或含义不明确的条目。
 
 `dsh-scope/invariant` companion 消费这份映射，不再维护手写事件表。Program 分析发生在仓库门禁内，而不是依赖生成的类型导入，因此 `dsh-scope` 和 `dsh-invariants` 都不需要依赖所有事件声明方。
 

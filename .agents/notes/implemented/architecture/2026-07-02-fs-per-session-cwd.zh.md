@@ -6,7 +6,7 @@ Status: implemented
 
 ## 问题
 
-ACP（Agent Client Protocol）桥接层为每个会话提供独立的工作区：`session/new` 将自动化客户端的项目目录记录为 `SessionHeader.cwd`，`dsh-tool-bash` 将每次 bash 调用的 `workdir` 默认设为调用方 agent（智能体）的 `session.header.cwd`（见 [ACP 包](../../../../packages/acp/acp) 与 `dsh-tool-bash` 中的 `resolveWorkdir`）。因此会话 A 中的 bash 命令在 A 的项目目录执行，会话 B 中的在 B 的项目目录执行——一个服务器进程，N 个工作区。
+ACP（Agent Client Protocol）桥接层为每个会话提供独立的工作区：`session/new` 将自动化客户端的项目目录记录为 `SessionHeader.cwd`，`dsh-tool-bash` 将每次 bash 调用的 `workdir` 默认设为调用方 agent（智能体）的 `session.header.cwd`（见 [ACP 包](https://github.com/deepseek-ai/deepseek-harness/tree/47f943859bef60e4160492346772ded9b24f765a/packages/acp/acp) 与 `dsh-tool-bash` 中的 `resolveWorkdir`）。因此会话 A 中的 bash 命令在 A 的项目目录执行，会话 B 中的在 B 的项目目录执行——一个服务器进程，N 个工作区。
 
 文件系统解析使用的是插件加载时的 cwd，而 bash 使用的是会话的项目目录。因此，当自动化客户端的项目目录与服务器启动目录不同时，相对路径的解析结果就会不一致；快照测试因为让这两个路径相同而掩盖了这个 bug。
 

@@ -2,6 +2,8 @@
 
 [English](README.md) | 中文
 
+> **研究提取分支：** `research/dsh-development-harness` 不是可运行或可发布的 DeepSeek Harness checkout。下方产品说明和命令暂时作为 R2 待分类材料保留，并指向[已经记录的产品来源](research/source-lock.json)；本研究仓库使用 `pnpm run check` 验证。
+
 DeepSeek Harness（`dsh`）是由 [DeepSeek AI](https://deepseek.com) 开发的开源 agent harness（智能体框架）。
 
 它采用**一切皆插件**的架构，并由 [Cordis](https://github.com/cordiverse/cordis) 驱动，其设计参见论文 [_A Programming Paradigm for Spatiotemporal Composability_](https://github.com/cordiverse/paper)。
@@ -71,4 +73,4 @@ pnpm dsh web
 
 [MIT](LICENSE)
 
-第三方依赖及其许可证见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+第三方依赖及其许可证见 [THIRD_PARTY_NOTICES.md](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/THIRD_PARTY_NOTICES.md)。

@@ -22,7 +22,7 @@ Status: rejected — 独立的持久化 Service Definition 包是持久化能力
 - `dsh-session` 导出持久化服务类型、协调器和约定辅助工具。
 - JSONL 和 SQLite 后端包直接依赖 `dsh-session`。
 - `agent-loop` 的恢复功能使用会话包拥有的服务键。
-- [会话持久化](../../implemented/architecture/2026-06-14-session-persistence.md)、[共享持久化写入协调器](../../implemented/architecture/2026-06-18-shared-persistence-write-coordinator.md)与[包文档](../../../../packages/session/session-persistence/README.md)说明后端实现为何仍保持独立。
+- [会话持久化](../../implemented/architecture/2026-06-14-session-persistence.md)、[共享持久化写入协调器](../../implemented/architecture/2026-06-18-shared-persistence-write-coordinator.md)与[包文档](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/session/session-persistence/README.md)说明后端实现为何仍保持独立。
 
 ## 放弃了什么
 

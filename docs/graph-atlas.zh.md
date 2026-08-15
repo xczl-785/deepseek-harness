@@ -14,9 +14,9 @@
 | [模块依赖图](module-graph.md) | `generated` |
 | [工具 schema 目录与包映射](tool-catalog.md) | `generated` |
 | [能力 seam 与核心服务](capability-seams.md) | `hybrid generated` |
-| [dsh 共享基础组合](../apps/cli/composition.md) | `hybrid generated` |
-| [headless-agent 应用组合](../examples/headless-agent/composition.md) | `hybrid generated` |
-| [acp-agent 应用组合](../examples/acp-agent/composition.md) | `hybrid generated` |
+| [dsh 共享基础组合](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/apps/cli/composition.md) | `hybrid generated` |
+| [headless-agent 应用组合](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/examples/headless-agent/composition.md) | `hybrid generated` |
+| [acp-agent 应用组合](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/examples/acp-agent/composition.md) | `hybrid generated` |
 | [事件生产方／消费方矩阵](event-producer-consumer.md) | `hybrid generated` |
 | [agent（智能体）轮次与步骤生命周期](agent-lifecycle.md) | `curated` |
 | [工具执行流水线](tool-execution-pipeline.md) | `curated` |

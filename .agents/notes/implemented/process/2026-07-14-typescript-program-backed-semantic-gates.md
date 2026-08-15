@@ -20,13 +20,13 @@ The repository applies this model to two gates.
 
 ### One project model expands the root solution
 
-[`TypeScriptProject`](../../../../scripts/ts-project.ts) parses the root `tsconfig.json`, recursively expands every project reference, and combines the referenced source roots into one no-emit semantic program. A normal program created from the solution config can redirect referenced projects to built declarations; explicit expansion keeps the package `src` files available for AST traversal and symbol identity.
+[`TypeScriptProject`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/scripts/ts-project.ts) parses the root `tsconfig.json`, recursively expands every project reference, and combines the referenced source roots into one no-emit semantic program. A normal program created from the solution config can redirect referenced projects to built declarations; explicit expansion keeps the package `src` files available for AST traversal and symbol identity.
 
 The wrapper owns config diagnostics, semantic compiler options, repository-relative paths, source lookup, and the shared checker. Individual gates do not glob package sources or construct partial programs independently.
 
 ### A. Event relations follow receiver and value types
 
-[`gen-doc-graphs`](../../../../scripts/gen-doc-graphs.ts) classifies calls by assignability to the repository's actual `Context`, `AgentEventDispatch`, and Cordis `EventsService` types. Variable names and property spellings do not determine whether a call is an event operation.
+[`gen-doc-graphs`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/scripts/gen-doc-graphs.ts) classifies calls by assignability to the repository's actual `Context`, `AgentEventDispatch`, and Cordis `EventsService` types. Variable names and property spellings do not determine whether a call is an event operation.
 
 Context and agent-dispatch calls contribute only finite string-literal event sets. Direct `EventsService.dispatch()` calls recover the event slot through array literals, constant aliases, conditional branches, and resolved call sites of non-exported local helpers. Generic forwarding parameters are not concrete producers: attribution stays with the call sites that supply a closed event value.
 
@@ -36,11 +36,11 @@ Every declared harness event must have a discovered producer. A missing producer
 
 ### B. Scoped-event routing generates one typed resolver map
 
-[`gen-scoped-events`](../../../../scripts/gen-scoped-events.ts) scans real `scopeTarget(base, key)` calls to establish the routing-key type for each scoped base. It then finds Cordis `Events` members with `this: Scoped<Base>` and searches every payload parameter plus one public property level for a type identical to that key after removing `null` and `undefined`.
+[`gen-scoped-events`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/scripts/gen-scoped-events.ts) scans real `scopeTarget(base, key)` calls to establish the routing-key type for each scoped base. It then finds Cordis `Events` members with `this: Scoped<Base>` and searches every payload parameter plus one public property level for a type identical to that key after removing `null` and `undefined`.
 
 Exactly one match generates a resolver. Multiple matches are ambiguous and fail. Zero matches require `@dshScopeScan unsupported`, which is reserved for events whose routing key intentionally stays outside the payload, such as owner-keyed session events and parent-keyed subagent lifecycle events. The annotation records an unsupported scan; it does not encode an event name, parameter index, property path, or replacement type.
 
-The committed [`scoped-events.generated.ts`](../../../../packages/core/scope/src/scoped-events.generated.ts) is a runtime-only map in the package that owns scoped dispatch and imports no event-owner package. Semantic completeness lives in the generator: its root Program enumerates every scoped `Events` declaration and real `scopeTarget` contract, resolves the unique payload path with the checker, and refuses missing, stale, or ambiguous entries before rendering the `unknown[]` runtime boundary.
+The committed [`scoped-events.generated.ts`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/core/scope/src/scoped-events.generated.ts) is a runtime-only map in the package that owns scoped dispatch and imports no event-owner package. Semantic completeness lives in the generator: its root Program enumerates every scoped `Events` declaration and real `scopeTarget` contract, resolves the unique payload path with the checker, and refuses missing, stale, or ambiguous entries before rendering the `unknown[]` runtime boundary.
 
 The `dsh-scope/invariant` companion consumes this map instead of maintaining a handwritten table. Because Program analysis happens in the repository gate rather than through generated type imports, neither `dsh-scope` nor `dsh-invariants` acquires dependencies on every event owner.
 

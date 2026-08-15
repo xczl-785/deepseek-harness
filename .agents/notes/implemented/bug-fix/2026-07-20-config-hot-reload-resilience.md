@@ -10,7 +10,7 @@ An invalid `cordis.yml` edit must not kill a running agent, but preserving the p
 
 ## Decision
 
-The vendored Cordis lifecycle and Loader plugins provide an awaited, compensating config transaction, logged as local modifications 6, 8, and 9 in [vendor/README.md](../../../../vendor/README.md).
+The vendored Cordis lifecycle and Loader plugins provide an awaited, compensating config transaction, logged as local modifications 6, 8, and 9 in [vendor/README.md](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/vendor/README.md).
 
 `Fiber.update()` returns its `internal/update` waterfall result. Config validation remains synchronous, while the default continuation returns the restart promise. Loader entry updates can therefore distinguish validation, import, application, and rollback failure from successful lifecycle settlement. `EntryTree.await()` rechecks service-gated fibers after Loader tasks drain and rejects settled failures; a fiber waiting on an absent service remains a valid pending entry rather than making settlement hang.
 

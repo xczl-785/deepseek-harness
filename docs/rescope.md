@@ -2,7 +2,7 @@
 
 English | [中文](rescope.zh.md)
 
-The Cordis framework and its foundation libraries are vendored under [`vendor/`](../vendor/README.md) and published under the `@deepseek-ai` scope, because every harness package declares the framework as a peer dependency: publishing the harness publishes this layer with it, and under the upstream names that publication would squat them on the registry. This page is the name mapping; the decision and its consequences live in the [rescope Agent Note](../.agents/notes/implemented/process/2026-08-10-vendor-package-rescope.md), and the upstream commits in [`vendor/README.md`](../vendor/README.md).
+The Cordis framework and its foundation libraries are vendored under [`vendor/`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/vendor/README.md) and published under the `@deepseek-ai` scope, because every harness package declares the framework as a peer dependency: publishing the harness publishes this layer with it, and under the upstream names that publication would squat them on the registry. This page is the name mapping; the decision and its consequences live in the [rescope Agent Note](../.agents/notes/implemented/process/2026-08-10-vendor-package-rescope.md), and the upstream commits in [`vendor/README.md`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/vendor/README.md).
 
 ## Name mapping
 
@@ -41,7 +41,7 @@ Subpath exports keep their path: `@cordisjs/plugin-loader/repository` becomes `@
 
 ## Applying, verifying, and reverting
 
-[`scripts/rescope-vendor.ts`](../scripts/rescope-vendor.ts) owns the mapping above and performs the rename, so no reference is renamed by hand:
+[`scripts/rescope-vendor.ts`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/scripts/rescope-vendor.ts) owns the mapping above and performs the rename, so no reference is renamed by hand:
 
 ```sh
 pnpm run rescope-vendor            # report what would change
@@ -50,4 +50,4 @@ pnpm run rescope-vendor:check      # assert the post-state; runs in the hygiene 
 pnpm run rescope-vendor --apply --reverse   # return to the upstream names
 ```
 
-Re-apply it after an upstream sync ([procedure](../vendor/README.md)), and follow it with the regeneration it prints: `pnpm install` for the lockfile, `pnpm run gen-third-party-notices`, and `pnpm run verify-translation-pairing --write` for the bilingual pairs it touched.
+Re-apply it after an upstream sync ([procedure](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/vendor/README.md)), and follow it with the regeneration it prints: `pnpm install` for the lockfile, `pnpm run gen-third-party-notices`, and `pnpm run verify-translation-pairing --write` for the bilingual pairs it touched.

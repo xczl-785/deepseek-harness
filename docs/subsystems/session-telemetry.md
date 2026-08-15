@@ -2,9 +2,9 @@
 
 English | [中文](session-telemetry.zh.md)
 
-Outbound session reporting is split as a [capability seam](../capability-seams.md): the Service Definition and capture coordinator ([dsh-session-telemetry](../../packages/session/session-telemetry), `ctx.sessionTelemetry`) own the capture points, fixed chunk projection, `session-telemetry/record` redaction waterfall, handoff cursor, and minimal backend contract; the Service Provider a deployment loads ([dsh-session-telemetry-otel](../../packages/session/session-telemetry-otel)) is the OpenTelemetry JS SDK's log pipeline configured verbatim. It is one optional capability, not part of the agent-loop spine, and nothing here reaches a model request. The boundary axiom — the harness's aspect ends at `emit()`; batching, retry, queueing, and loss policy belong to the reporting SDK — and the rejected alternatives are pinned in the [revival Agent Note](../../.agents/notes/implemented/feature/2026-07-23-session-telemetry-otel-revival.md); the capture points, cursor, and projection contracts live in the [Service Definition README](../../packages/session/session-telemetry/README.md).
+Outbound session reporting is split as a [capability seam](../capability-seams.md): the Service Definition and capture coordinator ([dsh-session-telemetry](https://github.com/deepseek-ai/deepseek-harness/tree/47f943859bef60e4160492346772ded9b24f765a/packages/session/session-telemetry), `ctx.sessionTelemetry`) own the capture points, fixed chunk projection, `session-telemetry/record` redaction waterfall, handoff cursor, and minimal backend contract; the Service Provider a deployment loads ([dsh-session-telemetry-otel](https://github.com/deepseek-ai/deepseek-harness/tree/47f943859bef60e4160492346772ded9b24f765a/packages/session/session-telemetry-otel)) is the OpenTelemetry JS SDK's log pipeline configured verbatim. It is one optional capability, not part of the agent-loop spine, and nothing here reaches a model request. The boundary axiom — the harness's aspect ends at `emit()`; batching, retry, queueing, and loss policy belong to the reporting SDK — and the rejected alternatives are pinned in the [revival Agent Note](../../.agents/notes/implemented/feature/2026-07-23-session-telemetry-otel-revival.md); the capture points, cursor, and projection contracts live in the [Service Definition README](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/session/session-telemetry/README.md).
 
-Source: [`packages/session/session-telemetry/src/index.ts`](../../packages/session/session-telemetry/src/index.ts)
+Source: [`packages/session/session-telemetry/src/index.ts`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/session/session-telemetry/src/index.ts)
 
 ## The logical record
 
@@ -58,7 +58,7 @@ Only the first `assistant/chunk` of each `(turn, step)` ships — the stream-sta
 
 ## The sharing disclosure
 
-The seam's acknowledgement contract (owned by the [Service Definition README's sharing-disclosure section](../../packages/session/session-telemetry/README.md#the-sharing-disclosure)): every backend discloses its deployment-selected sharing policy through the required abstract `sharing` member on `ctx.sessionTelemetry`, and consumers render "not configured" only when no telemetry service is mounted. The disclosure states the current policy, never delivery or retention — handoff is the non-blocking enqueue, and batching, retry, and loss policy stay the reporting SDK's.
+The seam's acknowledgement contract (owned by the [Service Definition README's sharing-disclosure section](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/session/session-telemetry/README.md#the-sharing-disclosure)): every backend discloses its deployment-selected sharing policy through the required abstract `sharing` member on `ctx.sessionTelemetry`, and consumers render "not configured" only when no telemetry service is mounted. The disclosure states the current policy, never delivery or retention — handoff is the non-blocking enqueue, and batching, retry, and loss policy stay the reporting SDK's.
 
 ```ts type-equiv
 /**
@@ -156,7 +156,7 @@ flush?(): void
 abstract shutdown(): Promise<void>
 ```
 
-Source: [`packages/session/session-telemetry/src/index.ts:148`](../../packages/session/session-telemetry/src/index.ts)
+Source: [`packages/session/session-telemetry/src/index.ts:148`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/session/session-telemetry/src/index.ts)
 
 <a id="session-telemetry-events"></a>
 
@@ -190,5 +190,5 @@ Transform one outbound record before it reaches the backend. This waterfall is t
 'session-telemetry/record'(record: SessionTelemetryRecord, next: () => SessionTelemetryRecord): SessionTelemetryRecord
 ```
 
-Source: [`packages/session/session-telemetry/src/index.ts:43`](../../packages/session/session-telemetry/src/index.ts)
+Source: [`packages/session/session-telemetry/src/index.ts:43`](https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/session/session-telemetry/src/index.ts)
 <!-- END GENERATED cordis-surface -->
