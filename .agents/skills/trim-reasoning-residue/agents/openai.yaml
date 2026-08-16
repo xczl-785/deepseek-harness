@@ -1,0 +1,4 @@
+interface:
+  display_name: "Trim Reasoning Residue"
+  short_description: "Remove authoring-session residue without losing facts"
+  default_prompt: "Use $trim-reasoning-residue to clean reasoning residue from the requested prose."

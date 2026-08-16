@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Code Changes"
+  short_description: "Review GitHub changes for concrete defects"
+  default_prompt: "Use $review-code-changes to review this pull request for concrete defects."

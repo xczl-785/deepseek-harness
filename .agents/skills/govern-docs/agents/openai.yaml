@@ -1,0 +1,4 @@
+interface:
+  display_name: "Govern Docs"
+  short_description: "Place, structure, audit, and validate project documentation"
+  default_prompt: "Use $govern-docs to improve the documentation in the requested scope."

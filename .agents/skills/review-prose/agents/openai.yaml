@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Prose"
+  short_description: "Preserve contracts while improving project prose"
+  default_prompt: "Use $review-prose to review and improve prose in the requested scope."

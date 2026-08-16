@@ -1,0 +1,4 @@
+interface:
+  display_name: "Translate Documentation"
+  short_description: "Run an explicit paired-document translation workflow"
+  default_prompt: "Use $translate-docs to translate and verify this documentation pair."

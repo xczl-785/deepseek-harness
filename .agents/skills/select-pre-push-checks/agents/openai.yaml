@@ -1,0 +1,4 @@
+interface:
+  display_name: "Select Pre-Push Checks"
+  short_description: "Choose evidence for the outgoing Git change"
+  default_prompt: "Use $select-pre-push-checks to validate this branch before pushing."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Synchronize Documentation Site"
+  short_description: "Keep canonical docs and their site projection aligned"
+  default_prompt: "Use $sync-doc-site to publish or update this repository’s documentation site safely."

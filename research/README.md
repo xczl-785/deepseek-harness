@@ -15,7 +15,7 @@
 - [最小开发 Harness v0](harness-v0.md)把当前规则、范围报告、决策记录、文档检查、Git hook 和 CI 连接成可直接执行的开发链，并记录安装、验证和移除方式。
 - [`scripts/`](../scripts/)保存分类、链接、Markdown、提示词、变更范围和静态检查工具；运行 `pnpm run check` 验证当前集合。
 - [翻译提示词](../docs/i18n/translation-prompt.md)、[术语表](../docs/i18n/terminology.md)和[语体样例](../docs/i18n/style-samples.md)是仍可执行的翻译研究工具。
-- 当前没有活跃仓库 Skill。原 DSH Skills 作为研究现场证据保存在 [`cases/skills/`](cases/skills/)，不会被自动调用。
+- 当前通用化后的活跃 Skill 源码位于 [`.agents/skills/`](../.agents/skills/)，用于项目级安装和试用；原始 Skills 作为研究现场证据保存在 [`cases/skills/`](cases/skills/)，不会被自动调用。
 
 ## 方法与案例
 

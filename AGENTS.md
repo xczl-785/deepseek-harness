@@ -1,14 +1,14 @@
 # AGENTS.md
 
-本仓库研究 DSH 开发时使用的 Harness，包括 Agent 工作流、工程规则、决策记录、质量门禁、评审方式和证据组织。这里不是 DSH 产品源码；不要恢复产品构建、运行、发布、网站或完整 monorepo。
+本仓库维护可安装到项目中的通用开发 Harness，包括 Agent Skills、工程规则、决策记录、质量门禁、评审方式和证据组织。这里不是产品源码；不要恢复来源产品的构建、运行、发布、网站或完整 monorepo。
 
 ## 阅读顺序与事实来源
 
-开始工作时先阅读[研究导航](research/README.md)。开展专题研究或提取 Harness 时同时阅读[场景驱动研究与采用章程](.agents/notes/implemented/process/2026-08-15-scenario-driven-development-harness-adoption.md)。
+修改活跃 Skill 时先阅读[项目级 Skill 试用决定](.agents/notes/implemented/process/2026-08-16-project-local-skill-staging.md)。追溯历史机制或继续提取时再阅读[研究导航](research/README.md)和[场景驱动研究与采用章程](.agents/notes/implemented/process/2026-08-15-scenario-driven-development-harness-adoption.md)。
 
-当前研究规则以根 `AGENTS.md`、作用域内的 `AGENTS.md` 和 `.agents/notes/implemented/` 为准。`.agents/notes/proposed/` 是待研究或待实施内容，不是已采用结论。`research/cases/` 和 `docs/postmortem/` 是历史证据，不是当前产品事实或仓库规则。
+当前规则以根 `AGENTS.md`、作用域内的 `AGENTS.md` 和 `.agents/notes/implemented/` 为准。`.agents/skills/` 是可安装源码；`research/cases/skills/` 是未经通用化的历史原文。`.agents/notes/proposed/` 是待研究或待实施内容，不是已采用结论；`research/cases/` 和 `docs/postmortem/` 是历史证据。
 
-关于 DSH 产品的事实必须回到 [source lock](research/source-lock.json) 固定的官方仓库提交核验。需要运行原产品代码时使用临时 checkout，不把完整产品目录复制到本仓库。
+关于来源产品的事实必须回到 [source lock](research/source-lock.json) 固定的官方提交核验。需要运行原产品代码时使用临时 checkout，不把完整产品目录复制到本仓库。
 
 ## 研究方式
 
@@ -18,11 +18,18 @@
 
 默认让 subagent 并行处理不同场景，主线程统一场景地图、复用等级和正式产出。只有当前使用价值明确时才新增 Skill、脚本、fixture 或自动化；不要为导航、展示或材料依赖关系开发工具。
 
+## Skill 源码与项目副本
+
+- `.agents/skills/` 只保存跨项目稳定的 Skill 源码；名称、触发描述和正文不得依赖 DSH 路径、包名、固定分支或产品命令。
+- 具体项目通过自己的 `.agents/skills/` 安装副本，并在项目 `AGENTS.md` 中提供分支模型、验证命令、文档结构和团队政策。
+- 当前不做全局安装。项目试用发现通用问题时，同时修正源仓库和试用副本；项目特例只改项目规则。
+- 是否允许隐式调用、哪些 Skills 保持安装，以及最终全局分发方式由项目试用后裁决，本仓库不提前替使用者筛选。
+
 ## 内容归属
 
 - `.agents/notes/` 保存当前提案和仍约束研究仓库的决定。
 - `docs/cookbook/` 保存可直接阅读的研发方法，`docs/postmortem/` 保存事故因果。
-- `research/cases/` 保存原 DSH 的历史 Notes、Skills、脚本和样本；保持来源语境，不自动调用其中的 Skill。
+- `.agents/skills/` 保存当前可加载的通用 Skill；`research/cases/` 保存原始历史 Notes、Skills、脚本和样本，保持来源语境且不自动调用。
 - `research/` 保存导航、来源、提取和语料分类证据。
 - `scripts/` 只保存当前研究材料确实使用的检查或小型工具。
 
@@ -42,4 +49,4 @@ pnpm run check
 
 ## 分支与移植
 
-`research/dsh-development-harness` 永久独立于产品主线。研究成果若适合 DSH，必须在产品仓库中通过单独分支、独立评审和适用验证移植；禁止把研究分支整体合回 `main` 或 `master`。
+`research/dsh-development-harness` 永久独立于来源产品主线。Harness Skills 安装到项目时复制所选目录，不把本分支整体合入目标项目；任何适合来源产品的变化仍需在产品仓库中单独评审和验证。

@@ -9,6 +9,7 @@
   "notes": {
     "method": [
       ".agents/notes/implemented/process/2026-08-15-chinese-primary-research-corpus.md",
+      ".agents/notes/implemented/process/2026-08-16-project-local-skill-staging.md",
       ".agents/notes/proposed/process/2026-06-11-api-extractor-reports.md",
       ".agents/notes/proposed/process/2026-06-11-architectural-conformance.md",
       ".agents/notes/proposed/process/2026-06-11-supply-chain-and-vendor-drift.md",
@@ -49,7 +50,9 @@
   },
   "skills": {
     "method": [],
-    "reusable-tool": []
+    "reusable-tool": [
+      ".agents/skills/*"
+    ]
   },
   "scripts": {
     "method": [],

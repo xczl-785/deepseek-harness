@@ -1,0 +1,4 @@
+interface:
+  display_name: "Maintain Agent Notes"
+  short_description: "Keep decision records useful and current"
+  default_prompt: "Use $maintain-agent-notes to review and maintain this project’s decision records."
