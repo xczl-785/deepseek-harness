@@ -1,12 +1,12 @@
 # AGENTS.md
 
-本仓库维护可安装到项目中的通用开发 Harness，包括 Agent Skills、工程规则、决策记录、质量门禁、评审方式和证据组织。这里不是产品源码；不要恢复来源产品的构建、运行、发布、网站或完整 monorepo。
+本仓库维护通用开发 Harness，包括 Agent Skills、工程规则、决策记录、质量门禁、评审方式和证据组织。这里不是产品源码；不要恢复来源产品的构建、运行、发布、网站或完整 monorepo。
 
 ## 阅读顺序与事实来源
 
-修改活跃 Skill 时先阅读[项目级 Skill 试用决定](.agents/notes/implemented/process/2026-08-16-project-local-skill-staging.md)。追溯历史机制或继续提取时再阅读[研究导航](research/README.md)和[场景驱动研究与采用章程](.agents/notes/implemented/process/2026-08-15-scenario-driven-development-harness-adoption.md)。
+修改活跃 Skill 时以根规则、作用域规则和当前实现为准。追溯历史机制或继续提取时再阅读[研究导航](research/README.md)和[场景驱动研究与采用章程](.agents/notes/implemented/process/2026-08-15-scenario-driven-development-harness-adoption.md)。
 
-当前规则以根 `AGENTS.md`、作用域内的 `AGENTS.md` 和 `.agents/notes/implemented/` 为准。`.agents/skills/` 是可安装源码；`research/cases/skills/` 是未经通用化的历史原文。`.agents/notes/proposed/` 是待研究或待实施内容，不是已采用结论；`research/cases/` 和 `docs/postmortem/` 是历史证据。
+当前规则以根 `AGENTS.md`、作用域内的 `AGENTS.md` 和 `.agents/notes/implemented/` 为准。`.agents/skills/` 是活跃通用 Skill；`research/cases/skills/` 是未经通用化的历史原文。`.agents/notes/proposed/` 是待研究或待实施内容，不是已采用结论；`research/cases/` 和 `docs/postmortem/` 是历史证据。
 
 关于来源产品的事实必须回到 [source lock](research/source-lock.json) 固定的官方提交核验。需要运行原产品代码时使用临时 checkout，不把完整产品目录复制到本仓库。
 
@@ -18,12 +18,11 @@
 
 默认让 subagent 并行处理不同场景，主线程统一场景地图、复用等级和正式产出。只有当前使用价值明确时才新增 Skill、脚本、fixture 或自动化；不要为导航、展示或材料依赖关系开发工具。
 
-## Skill 源码与项目副本
+## 通用 Skill 边界
 
-- `.agents/skills/` 只保存跨项目稳定的 Skill 源码；名称、触发描述和正文不得依赖 DSH 路径、包名、固定分支或产品命令。
-- 具体项目通过自己的 `.agents/skills/` 安装副本，并在项目 `AGENTS.md` 中提供分支模型、验证命令、文档结构和团队政策。
-- 当前不做全局安装。项目试用发现通用问题时，同时修正源仓库和试用副本；项目特例只改项目规则。
-- 是否允许隐式调用、哪些 Skills 保持安装，以及最终全局分发方式由项目试用后裁决，本仓库不提前替使用者筛选。
+- `.agents/skills/` 只保存跨项目稳定的 Skill；名称、触发描述和正文不得依赖 DSH 路径、包名、固定分支或产品命令。
+- 项目分支模型、验证命令、文档结构和团队政策由项目自己的作用域规则提供。
+- 通过真实任务判断 Skill 的触发、收益和摩擦，不提前替使用者筛选。
 
 ## 内容归属
 
@@ -47,6 +46,6 @@ pnpm run check
 
 提交前运行 `git diff --cached --check`。推送前不重复已经通过且未受后续改动影响的检查。CI 只验证研究语料和保留工具，不恢复产品测试矩阵。
 
-## 分支与移植
+## 分支边界
 
-`research/dsh-development-harness` 永久独立于来源产品主线。Harness Skills 安装到项目时复制所选目录，不把本分支整体合入目标项目；任何适合来源产品的变化仍需在产品仓库中单独评审和验证。
+`research/dsh-development-harness` 永久独立于来源产品主线。任何适合来源产品的变化仍需在产品仓库中单独评审和验证。

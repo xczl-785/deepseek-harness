@@ -7,7 +7,7 @@ Harness v0 把当前仓库已经运行的规则、范围报告、决策记录、
 | 阶段 | Harness 场景 | 当前资产 | 等级 | 当前处置 |
 | --- | --- | --- | --- | --- |
 | 任务进入 | 读取仓库身份、当前规则、历史证据边界 | 根与作用域 `AGENTS.md`、`research/README.md` | L1 | v0 |
-| 开始或完成改动 | 核验仓库、分支、真实 base 和四层变更范围 | `change-scope` 及测试 | L1 | v0 |
+| 开始或完成改动 | 核验仓库、分支、任务比较基准和四层变更范围 | `change-scope` 及测试 | L1 | v0 |
 | 形成非机械性决定 | 判断是否新增或更新 Agent Note | `.agents/notes/README.md`、分类与格式门禁 | L1 | v0 |
 | 修改文档 | 决定唯一归属，检查链接、fragment、段落和预算 | `docs/AGENTS.md`、Markdown 门禁 | L1 | v0 |
 | 选择验证 | 根据范围和行为选择最窄 owning check，记录未运行项 | 根 `AGENTS.md`、`package.json` 叶子命令 | L1 | v0 |
@@ -24,12 +24,12 @@ L1 可以直接使用；L2 需要删除 DSH 假设后轻量适配；L3 只作研
 
 ### 1. 建立当前事实
 
-先阅读作用域内规则，再确认 checkout 和分支。base 必须来自当前远端或 PR/stack 事实，不能根据当前分支名猜测。
+先阅读作用域内规则，再确认 checkout、分支和本次任务的比较基准。
 
 ```sh
 git status --short --branch
 git rev-parse --show-toplevel
-pnpm --silent run change-scope --base <verified-base-ref>
+pnpm --silent run change-scope --base <base-ref>
 ```
 
 `change-scope` 不 fetch、不查询托管平台、不选择测试。它返回固定 base、head、merge base，以及 committed、staged、unstaged、untracked 四组路径；调用者负责提供正确 base，并根据报告解释受影响行为。

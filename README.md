@@ -1,18 +1,17 @@
 # Agent Development Harness 源仓库
 
-本仓库维护可安装到具体项目的开发 Harness Skills、规则和小型工具。当前先把通用 Skills 复制到项目自己的 `.agents/skills/` 试用；稳定后再考虑全局安装。这里不是某个具体项目的配置仓库，也不提供可运行、可构建或可发布的产品代码。
+本仓库维护通用的开发 Harness Skills、规则和小型工具。这里不是某个具体项目的配置仓库，也不提供可运行、可构建或可发布的产品代码。
 
-通用源码保存在当前分支，项目分支模型、检查命令、目录和团队政策留在项目自己的 `AGENTS.md`。项目试用发现通用问题时，同时修正本仓库源码和仍在试用的项目副本；不要把一个项目的特例提升为 Harness 默认。
+Skill 只保留跨项目稳定的判断和工作流；项目分支模型、检查命令、目录和团队政策由项目自己的作用域规则提供。通过真实任务判断触发、收益和摩擦，不把一个项目的特例提升为 Harness 默认。
 
 ## 从哪里开始
 
-1. 阅读 [`.agents/skills/`](.agents/skills/) 中可安装的通用 Skills。
-2. 阅读[项目级 Skill 试用决定](.agents/notes/implemented/process/2026-08-16-project-local-skill-staging.md)，了解源仓库、项目副本和后续全局安装的边界。
-3. 需要追溯设计来源时再进入[研究导航](research/README.md)和 [source lock](research/source-lock.json)。
+1. 阅读 [`.agents/skills/`](.agents/skills/) 中的通用 Skills。
+2. 需要追溯设计来源时再进入[研究导航](research/README.md)和 [source lock](research/source-lock.json)。
 
 ## 仓库内容
 
-- `.agents/skills/`：已删除明显项目绑定、可安装到项目中筛选的通用 Skill 源码。
+- `.agents/skills/`：已删除明显项目绑定、可在真实任务中检验的通用 Skills。
 - `.agents/notes/`：当前 Harness 提案和已经采用的治理决定。
 - `docs/cookbook/`：仍有研究价值的研发操作方法。
 - `docs/postmortem/`：开发门禁或运行机制失效的事故案例。
@@ -40,7 +39,7 @@ pnpm run hooks:install
 
 ## 研究原则
 
-Harness 先通过项目级安装接受真实任务检验。Skill 只保存跨项目稳定的判断和工作流，项目事实由作用域规则提供；误触发、缺失输入和实际摩擦优先通过使用反馈修正，只有证据冲突、高风险约束或试用失败时才深挖历史现场。
+Harness 通过真实项目任务接受检验。误触发、缺失输入和实际摩擦优先通过使用反馈修正，只有证据冲突、高风险约束或试用失败时才深挖历史现场。
 
 ## 非目标
 
