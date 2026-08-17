@@ -1,0 +1,7 @@
+interface:
+  display_name: "Refine Project Harness"
+  short_description: "Refine Harnesses from real task evidence"
+  default_prompt: "Use $refine-project-harness to evaluate and improve this project’s Harness from real task evidence."
+
+policy:
+  allow_implicit_invocation: false
